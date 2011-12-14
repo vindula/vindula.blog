@@ -9,11 +9,17 @@ from vindula.blog.config import *
 from vindula.blog.content.interfaces import IAuthor
 
 author_schema = ATNewsItem.schema.copy() + Schema((
-    
-        
-
+     
 
 ))
+
+# Change field 'description'
+descriptionField = author_schema['description']
+descriptionField.widget.description = 'Texto que descreve brevemente sobre quem é o autor.'
+
+invisivel = {'view':'invisible','edit':'invisible',}
+author_schema['image'].widget.visible = invisivel
+author_schema['imageCaption'].widget.visible = invisivel
 
 finalizeATCTSchema(author_schema, moveDiscussion=True)
 

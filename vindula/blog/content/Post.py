@@ -10,10 +10,36 @@ from vindula.blog.content.interfaces import IPost
 
 post_schema = ATNewsItem.schema.copy() + Schema((
     
-        
-
+    TextField(
+        name='signature',
+        required=False,
+        widget=StringWidget(
+            label="Assinatura corporativa",
+            description="Será apresentada abaixo do título de cada post. Caso preenchido, este post irá ignorar a assinatura padrão do blog.",
+            label_msgid='vindula.blog_label_signature',
+            description_msgid='vindula.blog_help_signature',
+            i18n_domain='vindula.blog',
+        ),
+    ),
 
 ))
+
+# Change field 'description'
+descriptionField = post_schema['description']
+descriptionField.widget.description = 'Resumo do post ou apresentação de seu conteúdo.'
+
+# Change field 'image_file'
+imageField = post_schema['image']
+imageField.widget.label       = 'Imagem destaque'
+imageField.widget.description = 'Imagem principal, será centralizada do topo do post.'
+
+# Change field 'imageCaption'
+imageTitleField = post_schema['imageCaption']
+imageTitleField.widget.label       = 'Legenda da imagem'
+imageTitleField.widget.description = 'Texto que será apresentado abaixo da imagem.'
+
+# Change the position of the field 'text'
+post_schema.moveField('text', after='signature')
 
 finalizeATCTSchema(post_schema, moveDiscussion=True)
 
