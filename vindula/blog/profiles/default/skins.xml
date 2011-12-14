@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<object name="portal_skins" allow_any="False" cookie_persistence="False" 
+	    request_varname="plone_skin" meta_type="Plone Skins Tool">
+
+ <object name="vindula_blog_images"
+    meta_type="Filesystem Directory View"
+    directory="vindula.blog:skins/vindula_blog_images"/>
+	
+ <object name="vindula_blog_scripts"
+    meta_type="Filesystem Directory View"
+    directory="vindula.blog:skins/vindula_blog_scripts"/>	
+
+ <object name="vindula_blog_styles"
+    meta_type="Filesystem Directory View"
+    directory="vindula.blog:skins/vindula_blog_styles"/>	
+
+ <skin-path name="*">
+ 	
+  <layer name="vindula_blog_images"
+     insert-after="custom"/>
+	 
+  <layer name="vindula_blog_scripts"
+     insert-after="vindula_blog_images"/>	
+	  
+  <layer name="vindula_blog_styles"
+     insert-after="vindula_blog_scripts"/>		 
+	 
+ </skin-path>
+
+</object>

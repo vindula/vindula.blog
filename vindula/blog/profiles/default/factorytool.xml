@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<object name="portal_factory" meta_type="Plone Factory Tool">
+	<factorytypes>
+  	
+	    <type portal_type="Blog"/>
+		<type portal_type="Post"/>  
+		<type portal_type="Author"/>  
+	
+	</factorytypes>
+</object>

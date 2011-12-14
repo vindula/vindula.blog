@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="en" 
+	  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+	  xmlns:metal="http://xml.zope.org/namespaces/metal" 
+	  xmlns:i18n="http://xml.zope.org/namespaces/i18n" 
+	  metal:use-macro="here/main_template/macros/master" 
+	  i18n:domain="vindula.blog">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	
+	<body>
+		<metal:main fill-slot="content-core">
+	 		<metal:content-core define-macro="content-core">
+				
+				<div tal:content="view/getPosts"></div>
+				
+
+			</metal:content-core>
+		</metal:main>
+	</body>
+</html>	

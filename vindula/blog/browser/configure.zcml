@@ -1,0 +1,46 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="vindula.blog">
+	
+  <!-- Includes -->
+  
+  <include package="plone.app.contentmenu" />
+
+  <!-- Views -->  
+  
+  <browser:page
+  		for="*"
+    	name="blog_view"
+    	template="templates/blog.pt"
+    	class=".blog.BlogView"
+    	permission="zope2.View"
+    	allowed_attributes="getPosts"
+    	/>
+		
+  <browser:page
+  		for="*"
+    	name="post_view"
+    	template="templates/post.pt"
+    	class=".post.PostView"
+    	permission="zope2.View"
+    	allowed_attributes="getPost"
+    	/>
+		
+  <browser:page
+  		for="*"
+    	name="author_view"
+    	template="templates/author.pt"
+    	class=".author.AuthorView"
+    	permission="zope2.View"
+    	allowed_attributes="getAuthor"
+    	/>
+		
+  <!-- Directories --> 	
+	  
+  <browser:resourceDirectory
+      name="vindula.blog.templates"
+      directory="templates"
+      />	
+	  
+</configure>
