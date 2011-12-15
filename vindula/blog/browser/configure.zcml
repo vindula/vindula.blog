@@ -11,6 +11,14 @@
   
   <browser:page
   		for="*"
+    	name="blog_base_view"
+    	class=".base.BaseView"
+    	permission="zope2.View"
+    	allowed_attributes="getBlogTop"
+    	/>  
+ 
+  <browser:page
+  		for="*"
     	name="blog_view"
     	template="templates/blog.pt"
     	class=".blog.BlogView"

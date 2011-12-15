@@ -1,0 +1,89 @@
+/* 
+ * * * VINDULA BLOG * * *
+ */
+
+
+/* Top and Menu */
+.blog #blog-top-title {
+	height: 130px;
+	clear: both;
+} 
+
+.blog #blog-top-title div {
+	float: left;
+	height: 90px;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 20px;
+	text-transform: uppercase;
+}
+
+.blog #blog-top-title img {
+	float: left;
+	width: 680px;
+	height: 130px;
+} 
+
+.blog #blog-top-menu {
+	margin-bottom: 40px;
+	clear: both;
+}
+
+.blog #blog-top-menu ul {
+	height: 40px;
+	margin: 0;
+	padding: 0 20px;
+	border-top: 4px solid #FFFFFF;
+	border-bottom: 4px solid #205C90;
+	background-image: url(back-menu.jpg);
+	background-repeat: repeat-x;
+}
+
+.blog #blog-top-menu ul li {
+	height: 30px;
+	margin: 0 -4px;;
+    padding: 10px 20px 0;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+	color: #205C90;
+    list-style: none outside none;
+	cursor: pointer;
+	border-right: 2px solid #FFFFFF;
+}
+
+.blog #blog-top-menu ul li:hover {
+	background-color: #205C90;
+	color: #FFFFFF;
+}
+
+/* Blog View */
+.blog #blog-abaut,
+.blog #blog-authors {
+	display: none;
+}
+
+
+/* Post View */
+.blog #post {
+	border: 1px solid #D7D7D7;
+	padding: 20px;
+	margin-bottom: 40px;
+}
+
+.blog h1.post-title {
+	font-size: 21px;
+	font-weight: bold;
+	color: #205C90;
+	margin: 5px 0 10px 0;
+}
+
+.blog span.date {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.blog div.post-image {
+	text-align: center;
+	margin: 10px 0;
+}

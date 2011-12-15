@@ -14,6 +14,10 @@
  <object name="vindula_blog_styles"
     meta_type="Filesystem Directory View"
     directory="vindula.blog:skins/vindula_blog_styles"/>	
+	
+ <object name="vindula_blog_templates"
+    meta_type="Filesystem Directory View"
+    directory="vindula.blog:skins/vindula_blog_templates"/>	
 
  <skin-path name="*">
  	
@@ -24,7 +28,10 @@
      insert-after="vindula_blog_images"/>	
 	  
   <layer name="vindula_blog_styles"
-     insert-after="vindula_blog_scripts"/>		 
+     insert-after="vindula_blog_scripts"/>
+	 
+  <layer name="vindula_blog_templates"
+     insert-after="vindula_blog_styles"/>				 
 	 
  </skin-path>
 

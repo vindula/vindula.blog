@@ -1,0 +1,21 @@
+<metal:macro metal:define-macro="blogtop">	
+		<div tal:define="view python:context.restrictedTraverse('@@blog_base_view');
+		                 blog python: view.getBlogTop(context)"
+			 tal:condition="blog">
+			 	
+			<!-- Title -->
+			<div id="blog-top-title">
+				<div><span tal:content="blog/title"></span></div>
+				<img tal:attributes="src blog/image" tal:condition="blog/image">
+			</div>
+			
+			<!-- Menu -->
+			<div id="blog-top-menu">
+				<ul>
+					<li id="initial" tal:condition="blog/menu_initial">In&iacute;cio</li>
+					<li id="abaut" tal:condition="blog/menu_abaut">Sobre o Blog</li>
+					<li id="authors" tal:condition="blog/menu_authors">Autores</li>
+				</ul>
+			</div>
+		</div>
+</metal:macro>

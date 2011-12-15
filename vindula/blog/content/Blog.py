@@ -8,6 +8,21 @@ from vindula.blog.config import *
 from vindula.blog.content.interfaces import IBlog
 
 blog_schema = ATFolder.schema.copy() + Schema((
+                                               
+    # Fieldset "Padrão"
+    
+    BooleanField(
+        name='menu_initial',
+        default=True,
+        required=False,
+        widget=BooleanWidget(
+            label="Ativar menu: Início",
+            description="Se esta opção estiver marcada, o menu Início ficará visível.",
+            label_msgid='vindula.blog_label_number_menu_initial',
+            description_msgid='vindula.blog_help_number_menu_initial',
+            i18n_domain='vindula.blog',
+        ),
+    ), 
     
     ImageField(
         name='image',
@@ -63,6 +78,18 @@ blog_schema = ATFolder.schema.copy() + Schema((
     ), 
     
     TextField(
+        name='title_about_blog',
+        required=False,
+        widget=StringWidget(
+            label="Título",
+            description="Título da página de apresentação do blog.",
+            label_msgid='vindula.blog_label_title_about_blog',
+            description_msgid='vindula.blog_help_title_about_blog',
+            i18n_domain='vindula.blog',
+        ),
+    ),
+    
+    TextField(
         name='about_blog',
         required=False,     
         schemata = "Sobre o Blog",  
@@ -74,6 +101,22 @@ blog_schema = ATFolder.schema.copy() + Schema((
             i18n_domain='vindula.blog',
         ),
     ),
+    
+    # Fieldset "Autores"
+    
+    BooleanField(
+        name='menu_authors',
+        default=True,
+        required=False,
+        schemata = "Autores",         
+        widget=BooleanWidget(
+            label="Ativar menu: Autores",
+            description="Se esta opção estiver marcada, o menu Autores ficará visível.",
+            label_msgid='vindula.blog_label_number_menu_authors',
+            description_msgid='vindula.blog_help_number_menu_authors',
+            i18n_domain='vindula.blog',
+        ),
+    ), 
 
 ))
 

@@ -8,16 +8,86 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <metal:js fill-slot="javascript_head_slot">
+            <script type="text/javascript" tal:attributes="src string: ${context/portal_url}/vindula_blog.js"></script>
+        </metal:js>    	
 	</head>
 	
 	<body>
-		<metal:main fill-slot="content-core">
-	 		<metal:content-core define-macro="content-core">
+		<metal:main fill-slot="main">
+			<div class="blog" tal:define="posts view/getPosts | nothing;
+			                              abaut view/getAbaut | nothing;
+										  authors view/getAuthors | nothing;
+										  Batch python:modules['Products.CMFPlone'].Batch;
+								          b_size python:int(context.getNumber_posts());
+								          b_start python:0;
+								          b_start request/b_start | b_start">
 				
-				<div tal:content="view/getPosts"></div>
+				<!-- Menu -->
+				<div metal:use-macro="context/vindula_macro_blogtop/macros/blogtop"></div>
 				
-
-			</metal:content-core>
+				<!-- Initial -->
+				<div id="blog-initial" tal:condition="posts">
+					
+					<!-- Batch posts -->
+					<div id="post" tal:define="batch python:Batch(posts, b_size, int(b_start), orphan=0);"
+								   tal:repeat="post batch">
+						<a tal:attributes="alt post/title; href post/url">
+							<h1 class="post-title" tal:content="post/title"></h1>
+						</a>
+						<span class="date" tal:content="post/date"></span>
+						<span class="signature" tal:content="string: / ${post/signature}"
+						                        tal:condition="post/signature"></span>
+						
+						<tal:condition condition="post/image">
+							<div class="post-image">
+								<img tal:attributes="src post/image" />
+								<p tal:content="post/image-caption"></p>
+							</div>
+						</tal:condition>
+						
+						<div tal:content="structure post/text"></div>
+						
+						<tal:condition condition="post/subject">
+							<span>Assunto:</span>
+							<tal:repeat repeat="item post/subject">
+								<a tal:content="item" href=""></a>
+								<span tal:condition="not: repeat/item/end">, </span>
+							</tal:repeat>
+						</tal:condition>
+					</div>
+					
+					<!-- Navigation -->
+					<div tal:define="batch python:Batch(posts, b_size, int(b_start), orphan=0);">
+						<div metal:use-macro="here/batch_macros/macros/navigation" />
+					</div>
+				</div>
+				
+				<!-- Abaut -->
+				<div id="blog-abaut" tal:condition="abaut">
+					<div id="post">
+						<h1 class="post-title" tal:content="abaut/title"></h1>
+						<span class="date" tal:content="abaut/date"></span>
+						<span class="signature" tal:content="string: / ${abaut/signature}"
+						                        tal:condition="abaut/signature"></span>
+						<div tal:content="structure abaut/text"></div>
+					</div>
+				</div>
+				
+				<!-- Authors -->
+				<div id="blog-authors" tal:condition="authors">
+					<div tal:repeat="author authors">
+						<div id="post">
+							<h1 class="post-title" tal:content="author/title"></h1>
+							<span class="date" tal:content="author/date"></span>
+							<span class="signature" tal:content="string: / ${author/signature}"
+							                        tal:condition="author/signature"></span>
+							<div tal:content="structure author/text"></div>
+						</div>
+					</div>
+				</div>
+							
+			</div>
 		</metal:main>
 	</body>
 </html>	

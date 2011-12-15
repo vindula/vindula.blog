@@ -11,13 +11,38 @@
 	</head>
 	
 	<body>
-		<metal:main fill-slot="content-core">
-	 		<metal:content-core define-macro="content-core">
+		<metal:main fill-slot="main">
+	 		<div class="blog" tal:define="post view/getPost">
 				
-				<div tal:content="view/getPost"></div>
+				<!-- Menu -->
+				<div metal:use-macro="context/vindula_macro_blogtop/macros/blogtop"></div>
 				
-
-			</metal:content-core>
+				<!-- Post -->
+				<div id="post">
+					<h1 class="post-title" tal:content="post/title"></h1>
+					<span class="date" tal:content="post/date"></span>
+					<span class="signature" tal:content="string: / ${post/signature}" 
+					                        tal:condition="post/signature"></span>
+					
+					<tal:condition condition="post/image">
+						<div class="post-image">
+							<img tal:attributes="src post/image" />
+							<p tal:content="post/image-caption"></p>
+						</div>
+					</tal:condition>
+					
+					<div tal:content="structure post/text"></div>
+					
+					<tal:condition condition="post/subject">
+						<span>Assunto:</span>
+						<tal:repeat repeat="item post/subject">
+							<a tal:content="item" href=""></a>
+							<span tal:condition="not: repeat/item/end">, </span>
+						</tal:repeat>
+					</tal:condition>
+				</div>
+							
+			</div>
 		</metal:main>
 	</body>
 </html>	
