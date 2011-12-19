@@ -16,4 +16,8 @@ class PostView(BaseView):
             D['image'] = post.getImage().absolute_url()
         else:
             D['image'] = ''
+        context = post.aq_inner
+        while context.portal_type not in ['Blog', 'Plone Site']:
+            context = context.aq_parent
+        D['context-blog'] = context.absolute_url()
         return D

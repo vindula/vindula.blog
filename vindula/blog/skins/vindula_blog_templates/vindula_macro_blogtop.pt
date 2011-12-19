@@ -5,13 +5,19 @@
 			 	
 			<!-- Title -->
 			<div id="blog-top-title">
-				<div><span tal:content="blog/title"></span></div>
-				<img tal:attributes="src blog/image" tal:condition="blog/image">
+				<div id="title">
+					<span tal:content="blog/title"></span>
+				</div>
+				<div id="img">
+					<a tal:attributes="href blog/url">
+					<img tal:attributes="src blog/image" tal:condition="blog/image">
+					</a>
+				</div>
 			</div>
 			
 			<!-- Menu -->
 			<div id="blog-top-menu">
-				<ul>
+				<ul tal:condition="python: not (blog['menu_initial'] == False and blog['menu_abaut'] == False and blog['menu_authors'] == False)">
 					<li id="initial" tal:condition="blog/menu_initial">In&iacute;cio</li>
 					<li id="abaut" tal:condition="blog/menu_abaut">Sobre o Blog</li>
 					<li id="authors" tal:condition="blog/menu_authors">Autores</li>

@@ -35,14 +35,6 @@
     	allowed_attributes="getPost"
     	/>
 		
-  <browser:page
-  		for="*"
-    	name="author_view"
-    	template="templates/author.pt"
-    	class=".author.AuthorView"
-    	permission="zope2.View"
-    	allowed_attributes="getAuthor"
-    	/>
 		
   <!-- Directories --> 	
 	  

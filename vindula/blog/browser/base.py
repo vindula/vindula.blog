@@ -18,6 +18,7 @@ class BaseView(BrowserView):
         if context.portal_type == 'Blog':
             D = {}
             D['title'] = context.Title()
+            D['url'] = context.absolute_url()
             if context.getImage():
                 D['image'] = context.getImage().absolute_url()
             else:
@@ -33,7 +34,7 @@ class BaseView(BrowserView):
         if post.getSignature():
             return post.getSignature()
         else:
-            context = post
+            context = post.aq_inner
             while context.portal_type not in ['Blog', 'Plone Site']:
                 context = context.aq_parent
             if context.portal_type == 'Blog':

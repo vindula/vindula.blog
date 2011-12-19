@@ -38,7 +38,7 @@ class BlogView(BaseView):
             D['title'] = blog.getTitle_about_blog()
             D['date'] = self.formatDate(blog.getEffectiveDate())
             D['signature'] = blog.getSignature()
-            D['text'] = blog.getAbout_blog()
+            D['text'] = blog.getRawAbout_blog()
             return D
                 
                 

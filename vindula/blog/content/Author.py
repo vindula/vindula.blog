@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 from zope.interface import implements
-
 from Products.Archetypes.atapi import *
 from Products.ATContentTypes.content.newsitem import ATNewsItem
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
-
 from vindula.blog.config import *
 from vindula.blog.content.interfaces import IAuthor
 

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from zope.interface import implements
-from plone.directives import form
 from Products.Archetypes.atapi import *
 from Products.ATContentTypes.content.folder import ATFolder
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
@@ -67,7 +66,7 @@ blog_schema = ATFolder.schema.copy() + Schema((
         name='menu_about_blog',
         default=True,
         required=False,
-        schemata = "Sobre o Blog",         
+        #schemata = "Sobre o Blog",         
         widget=BooleanWidget(
             label="Ativar menu: Sobre o Blog",
             description="Se esta opção estiver marcada, o menu Sobre o Blog ficará visível.",
@@ -80,6 +79,7 @@ blog_schema = ATFolder.schema.copy() + Schema((
     TextField(
         name='title_about_blog',
         required=False,
+        #schemata = "Sobre o Blog", 
         widget=StringWidget(
             label="Título",
             description="Título da página de apresentação do blog.",
@@ -92,7 +92,7 @@ blog_schema = ATFolder.schema.copy() + Schema((
     TextField(
         name='about_blog',
         required=False,     
-        schemata = "Sobre o Blog",  
+        #schemata = "Sobre o Blog",  
         widget=RichWidget(
             label="Sobre o blog",
             description="Conteúdo livre para apresentação do blog.",
@@ -108,7 +108,7 @@ blog_schema = ATFolder.schema.copy() + Schema((
         name='menu_authors',
         default=True,
         required=False,
-        schemata = "Autores",         
+        #schemata = "Autores",         
         widget=BooleanWidget(
             label="Ativar menu: Autores",
             description="Se esta opção estiver marcada, o menu Autores ficará visível.",

@@ -15,8 +15,10 @@ vindula/blog/__init__.py
 vindula/blog/config.py
 vindula/blog/tests.py
 vindula/blog/browser/__init__.py
+vindula/blog/browser/author.py
 vindula/blog/browser/base.py
 vindula/blog/browser/blog.py
+vindula/blog/browser/post.py
 vindula/blog/content/Author.py
 vindula/blog/content/Blog.py
 vindula/blog/content/Post.py

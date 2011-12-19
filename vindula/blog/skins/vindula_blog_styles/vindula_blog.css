@@ -9,17 +9,26 @@
 	clear: both;
 } 
 
-.blog #blog-top-title div {
+.blog #blog-top-title #title {
 	float: left;
-	height: 90px;
+	width: 259px;
+	height:90px;
+	margin: 20px;
 	font-size: 20px;
 	font-weight: bold;
-	margin: 20px;
 	text-transform: uppercase;
 }
 
-.blog #blog-top-title img {
+.blog #blog-top-title #img {
 	float: left;
+	height: 130px;
+}
+.blog #blog-top-title #img a {
+	display: block;
+	border: none;
+}
+
+.blog #blog-top-title #img img {
 	width: 680px;
 	height: 130px;
 } 

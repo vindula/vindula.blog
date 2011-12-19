@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+	
+	<object name="vindula_blog_workflow" meta_type="Workflow"/>
+	
+    <bindings>
+    	
+        <type type_id="Post">
+            <bound-workflow workflow_id="vindula_blog_workflow"/>
+        </type>
+		
+        <type type_id="Author">
+            <bound-workflow workflow_id="vindula_blog_workflow"/>
+        </type>
+		
+    </bindings>
+	
+</object>
