@@ -14,7 +14,7 @@
     	name="blog_base_view"
     	class=".base.BaseView"
     	permission="zope2.View"
-    	allowed_attributes="getBlogTop"
+    	allowed_attributes="getBlogContext getBlogTop getPostSignature formatDate getNameMonth blogOrganize getFolder getBlogFiles"
     	/>  
  
   <browser:page
@@ -23,7 +23,7 @@
     	template="templates/blog.pt"
     	class=".blog.BlogView"
     	permission="zope2.View"
-    	allowed_attributes="getPosts"
+    	allowed_attributes="getPosts getAbaut getAuthors"
     	/>
 		
   <browser:page
@@ -34,8 +34,7 @@
     	permission="zope2.View"
     	allowed_attributes="getPost"
     	/>
-		
-		
+
   <!-- Directories --> 	
 	  
   <browser:resourceDirectory

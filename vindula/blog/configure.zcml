@@ -19,6 +19,7 @@
   
   <!-- Include the sub-packages that use their own configure.zcml files. -->
   <include package=".browser" />  
+  <include package=".portlets" />
 
   <!-- File System Directory Views registration -->
   <cmf:registerDirectory name="skins" directory="skins" recursive="True" /> 

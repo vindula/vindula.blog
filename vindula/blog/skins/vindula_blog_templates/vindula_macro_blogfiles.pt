@@ -1,0 +1,16 @@
+<metal:macro metal:define-macro="blogfiles">	
+	<div id="files" tal:define="view python:context.restrictedTraverse('@@blog_base_view');
+	                 				files python: view.getBlogFiles(context)">
+		
+		<span tal:condition="not: files">Os arquivos do blog n&atilde;o foram encontrados.</span>	
+		
+		<div tal:condition="files" tal:repeat="file files">
+			<span tal:content="file/year"></span>
+			<ul>
+				<li tal:repeat="month file/months">
+					<a tal:content="month" tal:attributes="href string: ${context/absolute_url}"></a>
+				</li>
+			</ul>
+		</div>	
+	</div>
+</metal:macro>

@@ -27,7 +27,7 @@
 					<h1 class="post-title" tal:content="post/title"></h1>
 					<span class="date" tal:content="post/date"></span>
 					<span class="signature" tal:content="string: / ${post/signature}" 
-					                        tal:condition="post/signature"></span>
+					                        tal:condition="post/signature"></span><p />
 					
 					<tal:condition condition="post/image">
 						<div class="post-image">

@@ -96,3 +96,11 @@
 	text-align: center;
 	margin: 10px 0;
 }
+
+/* 
+ * * * VINDULA PORTLET BLOG FILES * * *
+ */
+
+.portletBlogFiles .portletHeader a {
+	cursor: pointer;
+}
