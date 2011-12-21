@@ -1,16 +1,36 @@
-<metal:macro metal:define-macro="blogfiles">	
-	<div id="files" tal:define="view python:context.restrictedTraverse('@@blog_base_view');
-	                 				files python: view.getBlogFiles(context)">
+<metal:macro metal:define-macro="blogfiles">
+	<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/portlet_blogfiles.js"></script>
+	<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/cycle.js"></script>
 		
-		<span tal:condition="not: files">Os arquivos do blog n&atilde;o foram encontrados.</span>	
 		
-		<div tal:condition="files" tal:repeat="file files">
-			<span tal:content="file/year"></span>
-			<ul>
-				<li tal:repeat="month file/months">
-					<a tal:content="month" tal:attributes="href string: ${context/absolute_url}"></a>
-				</li>
-			</ul>
-		</div>	
-	</div>
+	<tal:define define="view python:context.restrictedTraverse('@@blog-macros');
+		                dic python:view.getBlogFiles(context);
+					    files dic/files | nothing;
+					    blog dic/blog | nothing">	
+		<dt class="portletHeader">
+			<span>Arquivos &nbsp;</span>
+			<tal:condition condition="python: len(files) > 1">
+				<a id="cycle-prev">&laquo;</a>
+				<span id="cycle-nav"></span><span id="cycle-len"></span>
+				<a id="cycle-next">&raquo;</a>
+			</tal:condition>
+		</dt>
+		<dd class="portletItem">
+			<div id="files">
+				<span tal:condition="not: files">Os arquivos do blog n&atilde;o foram encontrados.</span>		
+				<div tal:condition="files" tal:repeat="file files">
+					<span tal:content="file/year"></span>
+					<ul>
+						<li tal:repeat="month file/months">
+							<a tal:content="string: ${month/name} (${month/posts})" tal:attributes="id month/number"></a>
+						</li>
+					</ul>
+				</div>	
+			</div>
+			<form id="getposts" method="post" tal:attributes="action blog">
+				<input type="hidden" name="blog_year" value="" />
+				<input type="hidden" name="blog_month" value="" />	
+			</form>
+		</dd>
+	</tal:define>
 </metal:macro>

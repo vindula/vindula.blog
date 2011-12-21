@@ -97,10 +97,28 @@
 	margin: 10px 0;
 }
 
+.blog #post .read-more {
+	margin: 10px 0;
+}
+
+.blog #post .post-subject {
+	cursor:pointer;
+}
+
 /* 
  * * * VINDULA PORTLET BLOG FILES * * *
  */
+#blogfiles a {
+	cursor:pointer;
+}
 
-.portletBlogFiles .portletHeader a {
-	cursor: pointer;
+#cycle-prev,
+#cycle-next { 
+	cursor:pointer; 
+}
+#cycle-nav a {
+	display:none;
+}
+#cycle-nav a.activeSlide {
+	display:inline; 
 }

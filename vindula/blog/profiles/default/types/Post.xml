@@ -9,14 +9,14 @@
  <property name="content_meta_type">Post</property>
  <property name="product">vindula.blog</property>
  <property name="factory">addPost</property>
- <property name="immediate_view">post_view</property>
+ <property name="immediate_view">post-view</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types"/>
  <property name="allow_discussion">True</property>
- <property name="default_view">post_view</property>
+ <property name="default_view">post-view</property>
  <property name="default_view_fallback">False</property>
- <alias from="(Default)" to="post_view"/>
+ <alias from="(Default)" to="post-view"/>
  <alias from="index.html" to="(dynamic view)"/>
  <alias from="view" to="(selected layout)"/>
  <alias from="edit" to="base_edit"/>

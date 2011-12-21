@@ -4,5 +4,9 @@
 	<portlet addview="vindula.blog.PortletBlogFiles"
 			 title="Portlet Arquivos do Blog"
 			 description="Lista as pastas do blog, indicando a quantidade de posts em cada uma." />		
+			 
+	<portlet addview="vindula.blog.PortletBlogSearch"
+			 title="Portlet Busca no Blog"
+			 description="Portlet com um campo de busca por posts em todo o blog." />		
 
 </portlets>

@@ -8,5 +8,5 @@
 ##title=
 ##
 
-view = context.restrictedTraverse('@@blog_base_view');
-view.blogOrganize(state)
+view = context.restrictedTraverse('@@blog-organize');
+view.organize(state)

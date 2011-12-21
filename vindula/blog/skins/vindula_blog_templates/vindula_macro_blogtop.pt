@@ -1,5 +1,5 @@
 <metal:macro metal:define-macro="blogtop">	
-		<div tal:define="view python:context.restrictedTraverse('@@blog_base_view');
+		<div tal:define="view python:context.restrictedTraverse('@@blog-macros');
 		                 blog python: view.getBlogTop(context)"
 			 tal:condition="blog">
 			 	

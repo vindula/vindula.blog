@@ -9,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <metal:js fill-slot="javascript_head_slot">
-            <script type="text/javascript" tal:attributes="src string: ${context/portal_url}/vindula_blog.js"></script>
+            <script type="text/javascript" tal:attributes="src string: ${context/portal_url}/menu_blog.js"></script>
         </metal:js>    	
 	</head>
 	
@@ -57,11 +57,16 @@
 							<tal:condition condition="post/subject">
 								<span>Assunto:</span>
 								<tal:repeat repeat="item post/subject">
-									<a tal:content="item" href=""></a>
+									<a class="post-subject" tal:content="item"></a>
 									<span tal:condition="not: repeat/item/end">, </span>
 								</tal:repeat>
 							</tal:condition>
 						</div>
+						
+						<!-- Search Subject -->
+						<form id="search-subject" method="post" action="blog-search">
+							<input type="hidden" name="search-subject" value="">
+						</form>
 						
 						<!-- Navigation -->
 						<div tal:define="batch python:Batch(posts, b_size, int(b_start), orphan=0);">

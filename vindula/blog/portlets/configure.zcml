@@ -15,5 +15,16 @@
 		 renderer=".portlet_blogfiles.Renderer"
 		 addview=".portlet_blogfiles.AddForm"
 	 	/>
+		
+	<!-- Portlet Blog Search -->
+  	<plone:portlet
+		 name="vindula.blog.PortletBlogSearch"
+		 interface=".portlet_blogsearch.IPortletBlogSearch"
+		 assignment=".portlet_blogsearch.Assignment"
+		 view_permission="zope2.View"
+		 edit_permission="cmf.ManagePortal"
+		 renderer=".portlet_blogsearch.Renderer"
+		 addview=".portlet_blogsearch.AddForm"
+	 	/>
 
 </configure>

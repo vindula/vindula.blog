@@ -11,15 +11,15 @@
   
   <browser:page
   		for="*"
-    	name="blog_base_view"
+    	name="blog-base"
     	class=".base.BaseView"
     	permission="zope2.View"
-    	allowed_attributes="getBlogContext getBlogTop getPostSignature formatDate getNameMonth blogOrganize getFolder getBlogFiles"
+    	allowed_attributes="getBlogContext getPostSignature formatDate getNameMonth"
     	/>  
  
   <browser:page
   		for="*"
-    	name="blog_view"
+    	name="blog-view"
     	template="templates/blog.pt"
     	class=".blog.BlogView"
     	permission="zope2.View"
@@ -28,11 +28,36 @@
 		
   <browser:page
   		for="*"
-    	name="post_view"
+    	name="post-view"
     	template="templates/post.pt"
     	class=".post.PostView"
     	permission="zope2.View"
     	allowed_attributes="getPost"
+    	/>
+		
+  <browser:page
+  		for="*"
+    	name="blog-search"
+		template="templates/blog-search.pt"
+    	class=".search.BlogSearchView"
+    	permission="zope2.View"
+    	allowed_attributes="searchPosts"
+    	/>		
+
+  <browser:page
+  		for="*"
+    	name="blog-macros"
+    	class=".macros.MacrosView"
+    	permission="zope2.View"
+    	allowed_attributes="getBlogTop getBlogFiles"
+    	/>
+		
+  <browser:page
+  		for="*"
+    	name="blog-organize"
+    	class=".organize.BlogOrganizeView"
+    	permission="zope2.View"
+    	allowed_attributes="organize getFolder"
     	/>
 
   <!-- Directories --> 	

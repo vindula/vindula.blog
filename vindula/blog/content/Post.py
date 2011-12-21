@@ -19,6 +19,18 @@ post_schema = ATNewsItem.schema.copy() + Schema((
             i18n_domain='vindula.blog',
         ),
     ),
+    
+    TextField(
+        name='content',
+        required=False,     
+        searchable=True,
+        widget=RichWidget(
+            label="Corpo do texto",
+            label_msgid='vindula.blog_label_number_content',
+            description_msgid='vindula.blog_help_number_content',
+            i18n_domain='vindula.blog',
+        ),
+    ),
 
 ))
 
@@ -36,8 +48,8 @@ imageTitleField = post_schema['imageCaption']
 imageTitleField.widget.label       = 'Legenda da imagem'
 imageTitleField.widget.description = 'Texto que será apresentado abaixo da imagem.'
 
-# Change the position of the field 'text'
-post_schema.moveField('text', after='signature')
+invisivel = {'view':'invisible','edit':'invisible',}
+post_schema['text'].widget.visible = invisivel
 
 finalizeATCTSchema(post_schema, moveDiscussion=True)
 

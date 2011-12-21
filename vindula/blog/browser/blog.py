@@ -5,6 +5,11 @@ class BlogView(BaseView):
     
     def getPosts(self):
         blog = self.context
+        year = self.request.get('blog_year')
+        month = self.request.get('blog_month')
+        if year and month:
+            blog = blog.get('posts').get(year).get(month)
+
         posts = self.pc(portal_type='Post',
                         review_state='published',
                         path={'query':'/'.join(blog.getPhysicalPath())},
@@ -19,7 +24,7 @@ class BlogView(BaseView):
                 D['title'] = obj.Title()
                 D['date'] = self.formatDate(obj.getEffectiveDate())
                 D['signature'] = self.getPostSignature(obj)
-                D['text'] = obj.getText()
+                D['text'] = obj.getRawContent()
                 D['subject'] = obj.Subject()
                 D['url'] = obj.absolute_url()
                 D['image-caption'] = obj.getImageCaption()

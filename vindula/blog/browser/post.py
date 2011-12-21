@@ -9,15 +9,14 @@ class PostView(BaseView):
         D['title'] = post.Title()
         D['date'] = self.formatDate(post.getEffectiveDate())
         D['signature'] = self.getPostSignature(post)
-        D['text'] = post.getText()
+        D['text'] = post.getRawContent()
         D['subject'] = post.Subject()
         D['image-caption'] = post.getImageCaption()
         if post.getImage():
             D['image'] = post.getImage().absolute_url()
         else:
             D['image'] = ''
-        context = post.aq_inner
-        while context.portal_type not in ['Blog', 'Plone Site']:
-            context = context.aq_parent
-        D['context-blog'] = context.absolute_url()
+        blog = self.getBlogContext(post.aq_inner)
+        if blog:
+            D['context-blog'] = blog.absolute_url()
         return D
