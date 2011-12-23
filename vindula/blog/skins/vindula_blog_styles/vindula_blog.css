@@ -61,7 +61,8 @@
 	border-right: 2px solid #FFFFFF;
 }
 
-.blog #blog-top-menu ul li:hover {
+.blog #blog-top-menu ul li.hover,
+.blog #blog-top-menu ul li.active {
 	background-color: #205C90;
 	color: #FFFFFF;
 }

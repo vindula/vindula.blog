@@ -3,9 +3,9 @@ from vindula.blog.browser.base import BaseView
 
 class MacrosView(BaseView):
     
-    def getBlogTop(self, context):
+    def getBlogTop(self):
         # Returns the title, the image and the menu of the blog
-        context = self.getBlogContext(context)
+        context = self.getBlogContext()
         if context:
             D = {}
             D['title'] = context.Title()
@@ -20,9 +20,17 @@ class MacrosView(BaseView):
             return D  
         
         
-    def getBlogFiles(self, context):
+    def getBlogFooter(self):
+        # Returns the blog bottom contents
+        context = self.getBlogContext()
+        if context:
+            if context.getFooter():
+                return context.getFooter()
+        
+        
+    def getBlogFiles(self):
         # Returns a list of the folders on the blog
-        blog = self.getBlogContext(context)
+        blog = self.getBlogContext()
         if blog:
             folder_posts = blog.get('posts')
             years = folder_posts.objectValues()

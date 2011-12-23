@@ -16,6 +16,10 @@ class BaseView(BrowserView):
             context = self.context
         while context.portal_type not in ['Blog', 'Plone Site']:
             context = context.aq_parent
+            try:
+                type = context.portal_type
+            except:
+                context = context.aq_parent
         if context.portal_type == 'Blog':
             return context
 

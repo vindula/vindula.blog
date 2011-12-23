@@ -4,7 +4,7 @@
 		
 		
 	<tal:define define="view python:context.restrictedTraverse('@@blog-macros');
-		                dic python:view.getBlogFiles(context);
+		                dic view/getBlogFiles;
 					    files dic/files | nothing;
 					    blog dic/blog | nothing">	
 		<dt class="portletHeader">

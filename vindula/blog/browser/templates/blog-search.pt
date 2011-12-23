@@ -54,6 +54,9 @@
 					<input type="hidden" name="search-subject" value="">
 				</form>
 				
+				<!-- Footer -->
+				<div metal:use-macro="context/vindula_macro_blogfooter/macros/blogfooter"></div>
+				
 			</div>
 		</metal:main>
 	</body>

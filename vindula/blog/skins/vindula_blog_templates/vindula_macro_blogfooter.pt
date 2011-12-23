@@ -1,0 +1,9 @@
+<metal:macro metal:define-macro="blogfooter">	
+		<div tal:define="view python:context.restrictedTraverse('@@blog-macros');
+		                 footer view/getBlogFooter | nothing"
+			 tal:condition="footer" 
+			 id="blog-footer">
+			 	
+			<p tal:content="footer"></p>
+		</div>
+</metal:macro>

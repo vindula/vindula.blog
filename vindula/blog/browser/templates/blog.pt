@@ -43,7 +43,7 @@
 							</a>
 							<span class="date" tal:content="post/date"></span>
 							<span class="signature" tal:content="string: / ${post/signature}"
-							                        tal:condition="post/signature"></span><p />
+							                        tal:condition="post/signature"></span>
 							
 							<tal:condition condition="post/image">
 								<div class="post-image">
@@ -52,7 +52,7 @@
 								</div>
 							</tal:condition>
 							
-							<div tal:content="structure post/text"></div>
+							<div class="post-text" tal:content="structure post/text"></div>
 							
 							<tal:condition condition="post/subject">
 								<span>Assunto:</span>
@@ -86,8 +86,8 @@
 						<h1 class="post-title" tal:content="abaut/title"></h1>
 						<span class="date" tal:content="abaut/date"></span>
 						<span class="signature" tal:content="string: / ${abaut/signature}"
-						                        tal:condition="abaut/signature"></span><p />
-						<div tal:content="structure abaut/text"></div>
+						                        tal:condition="abaut/signature"></span>
+						<div class="post-text" tal:content="structure abaut/text"></div>
 					</div>
 				</div>
 				
@@ -102,11 +102,15 @@
 							<h1 class="post-title" tal:content="author/title"></h1>
 							<span class="date" tal:content="author/date"></span>
 							<span class="signature" tal:content="string: / ${author/signature}"
-							                        tal:condition="author/signature"></span><p />
-							<div tal:content="structure author/text"></div>
+							                        tal:condition="author/signature"></span>
+							<div class="post-text" tal:content="structure author/text"></div>
 						</div>
 					</div>
 				</div>
+				
+				
+				<!-- Footer -->
+				<div metal:use-macro="context/vindula_macro_blogfooter/macros/blogfooter"></div>
 							
 			</div>
 		</metal:main>

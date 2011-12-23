@@ -28,7 +28,7 @@
 					<h1 class="post-title" tal:content="post/title"></h1>
 					<span class="date" tal:content="post/date"></span>
 					<span class="signature" tal:content="string: / ${post/signature}" 
-					                        tal:condition="post/signature"></span><p />
+					                        tal:condition="post/signature"></span>
 					
 					<tal:condition condition="post/image">
 						<div class="post-image">
@@ -37,21 +37,24 @@
 						</div>
 					</tal:condition>
 					
-					<div tal:content="structure post/text"></div>
+					<div class="post-text" tal:content="structure post/text"></div>
 					
-					<tal:condition condition="post/subject">
+					<div class="post-bottom" tal:condition="post/subject">
 						<span>Assunto:</span>
 						<tal:repeat repeat="item post/subject">
 							<a class="post-subject" tal:content="item"></a>
 							<span tal:condition="not: repeat/item/end">, </span>
 						</tal:repeat>
-					</tal:condition>
+					</div>
 				</div>
 				
 				<!-- Search Subject -->
 				<form id="search-subject" method="post" action="blog-search">
 					<input type="hidden" name="search-subject" value="">
 				</form>
+				
+				<!-- Footer -->
+				<div metal:use-macro="context/vindula_macro_blogfooter/macros/blogfooter"></div>
 							
 			</div>
 		</metal:main>

@@ -60,6 +60,18 @@ blog_schema = ATFolder.schema.copy() + Schema((
         ),
     ),      
     
+    TextField(
+        name='footer',
+        required=False,
+        widget=StringWidget(
+            label="Rodapé",
+            description="Insira uma frase para aparecer no rodapé.",
+            label_msgid='vindula.blog_label_number_footer',
+            description_msgid='vindula.blog_help_number_footer',
+            i18n_domain='vindula.blog',
+        ),
+    ),
+    
     # Fieldset "Sobre o Blog"
     
     BooleanField(

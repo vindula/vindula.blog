@@ -49,7 +49,7 @@
     	name="blog-macros"
     	class=".macros.MacrosView"
     	permission="zope2.View"
-    	allowed_attributes="getBlogTop getBlogFiles"
+    	allowed_attributes="getBlogTop getBlogFooter getBlogFiles"
     	/>
 		
   <browser:page
