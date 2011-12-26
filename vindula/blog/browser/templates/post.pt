@@ -23,28 +23,34 @@
 				
 				<!-- Post -->
 				<div id="post">
-					<input id="context-post" type="hidden" tal:attributes="value post/context-blog | nothing" />
-					
-					<h1 class="post-title" tal:content="post/title"></h1>
-					<span class="date" tal:content="post/date"></span>
-					<span class="signature" tal:content="string: / ${post/signature}" 
-					                        tal:condition="post/signature"></span>
-					
-					<tal:condition condition="post/image">
-						<div class="post-image">
-							<img tal:attributes="src post/image" />
-							<p tal:content="post/image-caption"></p>
-						</div>
-					</tal:condition>
-					
-					<div class="post-text" tal:content="structure post/text"></div>
-					
+					<div class="post-content">
+						<input id="context-post" type="hidden" tal:attributes="value post/context-blog | nothing" />
+						
+						<h1 class="post-title" tal:content="post/title"></h1>
+						<span class="date" tal:content="post/date"></span>
+						<span class="signature" tal:content="string: / ${post/signature}" 
+						                        tal:condition="post/signature"></span>
+						
+						<tal:condition condition="post/image">
+							<div class="post-image">
+								<img tal:attributes="src post/image" />
+								<p tal:content="post/image-caption"></p>
+							</div>
+						</tal:condition>
+						
+						<div class="post-text" tal:content="structure post/text"></div>
+					</div>
 					<div class="post-bottom" tal:condition="post/subject">
-						<span>Assunto:</span>
-						<tal:repeat repeat="item post/subject">
-							<a class="post-subject" tal:content="item"></a>
-							<span tal:condition="not: repeat/item/end">, </span>
-						</tal:repeat>
+						<div class="btn-comment">
+							<span>Coment&aacute;rios (0)</span>
+						</div>
+						<div class="subjects">
+							<span>Assunto:</span>
+							<tal:repeat repeat="item post/subject">
+								<a class="post-subject" tal:content="item"></a>
+								<span tal:condition="not: repeat/item/end">, </span>
+							</tal:repeat>
+						</div>
 					</div>
 				</div>
 				

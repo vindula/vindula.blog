@@ -38,29 +38,35 @@
 						<!-- Batch posts -->
 						<div id="post" tal:define="batch python:Batch(posts, b_size, int(b_start), orphan=0);"
 									   tal:repeat="post batch">
-							<a tal:attributes="alt post/title; href post/url">
-								<h1 class="post-title" tal:content="post/title"></h1>
-							</a>
-							<span class="date" tal:content="post/date"></span>
-							<span class="signature" tal:content="string: / ${post/signature}"
-							                        tal:condition="post/signature"></span>
-							
-							<tal:condition condition="post/image">
-								<div class="post-image">
-									<img tal:attributes="src post/image" />
-									<p tal:content="post/image-caption"></p>
+							<div class="post-content">
+								<a tal:attributes="alt post/title; href post/url">
+									<h1 class="post-title" tal:content="post/title"></h1>
+								</a>
+								<span class="date" tal:content="post/date"></span>
+								<span class="signature" tal:content="string: / ${post/signature}"
+								                        tal:condition="post/signature"></span>
+								
+								<tal:condition condition="post/image">
+									<div class="post-image">
+										<img tal:attributes="src post/image" />
+										<p tal:content="post/image-caption"></p>
+									</div>
+								</tal:condition>
+								
+								<div class="post-text" tal:content="structure post/text"></div>
+							</div>
+							<div class="post-bottom" tal:condition="post/subject">
+								<div class="btn-comment">
+									<span>Coment&aacute;rios (0)</span>
 								</div>
-							</tal:condition>
-							
-							<div class="post-text" tal:content="structure post/text"></div>
-							
-							<tal:condition condition="post/subject">
-								<span>Assunto:</span>
-								<tal:repeat repeat="item post/subject">
-									<a class="post-subject" tal:content="item"></a>
-									<span tal:condition="not: repeat/item/end">, </span>
-								</tal:repeat>
-							</tal:condition>
+								<div class="subjects">
+									<span>Assunto:</span>
+									<tal:repeat repeat="item post/subject">
+										<a class="post-subject" tal:content="item"></a>
+										<span tal:condition="not: repeat/item/end">, </span>
+									</tal:repeat>
+								</div>
+							</div>
 						</div>
 						
 						<!-- Search Subject -->
@@ -82,7 +88,7 @@
 						<span>O texto de apresenta&ccedil;&atilde;o do blog n&atilde;o foi encontrado.</span>
 						<a tal:attributes="href string: ${context/absolute_url}/edit">Adicione uma apresenta&ccedil;&atilde;o.</a>
 					</tal:condition>
-					<div id="post" tal:condition="abaut/text">
+					<div class="contents" tal:condition="abaut/text">
 						<h1 class="post-title" tal:content="abaut/title"></h1>
 						<span class="date" tal:content="abaut/date"></span>
 						<span class="signature" tal:content="string: / ${abaut/signature}"
@@ -98,7 +104,7 @@
 						<a tal:attributes="href string: ${context/absolute_url}/createObject?type_name=Author">Adicione um autor.</a>
 					</tal:condition>
 					<div tal:repeat="author authors" tal:condition="authors">
-						<div id="post">
+						<div class="contents">
 							<h1 class="post-title" tal:content="author/title"></h1>
 							<span class="date" tal:content="author/date"></span>
 							<span class="signature" tal:content="string: / ${author/signature}"
