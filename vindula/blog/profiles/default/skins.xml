@@ -2,6 +2,7 @@
 
 <object name="portal_skins" allow_any="False" cookie_persistence="False" 
 	    request_varname="plone_skin" meta_type="Plone Skins Tool">
+	    <!-- default_skin="Skin Name"> -->	
 
  <object name="vindula_blog_images"
     meta_type="Filesystem Directory View"
