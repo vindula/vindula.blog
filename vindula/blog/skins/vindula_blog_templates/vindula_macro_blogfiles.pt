@@ -7,12 +7,12 @@
 		                dic view/getBlogFiles;
 					    files dic/files | nothing;
 					    blog dic/blog | nothing">	
-		<dt class="portletHeader">
+		<dt class="portletHeader" id="cycle-blogfiles">
 			<span>Arquivos &nbsp;</span>
 			<tal:condition condition="python: len(files) > 1">
-				<a id="cycle-prev">&laquo;</a>
+				<div id="cycle-prev"></div>
 				<span id="cycle-nav"></span><span id="cycle-len"></span>
-				<a id="cycle-next">&raquo;</a>
+				<div id="cycle-next"></div>
 			</tal:condition>
 		</dt>
 		<dd class="portletItem">

@@ -10,7 +10,8 @@ $j(document).ready(function(){
 	var height = 0;
 	$j("#files div").each(function() {
 		if ($j(this).height() > height)
-    		height = $j(this).height();
+    		height = $j(this).height()
+		height = height + 10;
 	});
 
 	$j("#files").attr('id', 'blogfiles');

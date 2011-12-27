@@ -129,7 +129,25 @@ blog_schema = ATFolder.schema.copy() + Schema((
             i18n_domain='vindula.blog',
         ),
     ), 
+    
 
+    # Fieldset "Portlets"
+
+    BooleanField(
+        name='portlets',
+        default=False,
+        required=False,
+        #schemata = "Portlets",         
+        widget=BooleanWidget(
+            label="Mostrar portlets abaixo do menu",
+            description="Se esta opção estiver marcada, os portlets serão exibidos abaixo do menu do blog.",
+            label_msgid='vindula.blog_label_number_portlets',
+            description_msgid='vindula.blog_help_number_portlets',
+            i18n_domain='vindula.blog',
+        ),
+    ), 
+    
+    
 ))
 
 invisivel = {'view':'invisible','edit':'invisible',}

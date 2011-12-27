@@ -9,6 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <metal:js fill-slot="javascript_head_slot">
+        	<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/vindula_blog.js"></script>
             <script type="text/javascript" tal:attributes="src string: ${context/portal_url}/menu_blog.js"></script>
         </metal:js>    	
 	</head>
@@ -22,37 +23,61 @@
 				<!-- Menu -->
 				<div metal:use-macro="context/vindula_macro_blogtop/macros/blogtop"></div>
 				
-				<h3 tal:content="string: Resultados de Busca para: ${term}" tal:condition="term"></h3>
-				<h3 tal:content="string: Posts relacionados ao assunto: ${subject}" tal:condition="subject"></h3>
-				<br />
-				
-				<!-- Search Results -->
-				<span tal:condition="not: results">N&atilde;o foram encontrados posts com este termo de pesquisa.</span>
-
-				<div id="post" tal:condition="results" tal:repeat="post results">
-					<span class="date" tal:content="post/date"></span>
-					<span class="signature" tal:content="string: / ${post/signature}"
-					                        tal:condition="post/signature"></span>
-					<a tal:attributes="alt post/title; href post/url">
-						<h1 class="post-title" tal:content="post/title"></h1>
-					</a>
-					<div tal:content="structure post/text"></div>
-					<div class="read-more">
-						<a tal:attributes="href post/url">&raquo; Leia mais</a>
-					</div>
-					<tal:condition condition="post/subject">
-						<span>Assunto:</span>
-						<tal:repeat repeat="item post/subject">
-							<a class="post-subject" tal:content="item"></a>
-							<span tal:condition="not: repeat/item/end">, </span>
-						</tal:repeat>
-					</tal:condition>
+				<!-- Portlets -->
+				<div class="portlets-area" tal:condition="context/portlets">
+					<tal:define define="global define_area string: blog-area" />
+               		<tal:block replace="structure provider:plone.rightcolumn" />
 				</div>
 				
-				<!-- Search Subject -->
-				<form id="search-subject" method="post" action="blog-search">
-					<input type="hidden" name="search-subject" value="">
-				</form>
+				<div tal:attributes="class define_area | nothing">
+				
+					<div tal:condition="term">
+						<h3 class="sch-title">Resultados de Busca para: </h3><h3 class="sch-term" tal:content="term"></h3>
+					</div>
+					<div tal:condition="subject">
+						<h3 class="sch-title">Posts relacionados ao assunto: </h3><h3 class="sch-term" tal:content="subject"></h3>
+					</div>
+					<br />
+					
+					<input id="context-post" type="hidden" tal:attributes="value python: view.getBlogContext().absolute_url()" 
+					  									   tal:on-error="nothing" />
+					
+					<!-- Search Results -->
+					<span tal:condition="not: results">N&atilde;o foram encontrados posts com este termo de pesquisa.</span>
+	
+					<div id="post" tal:condition="results" tal:repeat="post results">
+						<div class="post-content">
+							<span class="date" tal:content="post/date"></span>
+							<span class="signature" tal:content="string: / ${post/signature}"
+							                        tal:condition="post/signature"></span>
+							<a tal:attributes="alt post/title; href post/url">
+								<h1 class="post-title" tal:content="post/title"></h1>
+							</a>
+							<div tal:content="structure post/text"></div>
+							<div class="read-more">
+								<a tal:attributes="href post/url">&raquo; Leia mais</a>
+							</div>
+						</div>
+						<div class="post-bottom" tal:condition="post/subject">
+							<div class="btn-comment">
+								<span>Coment&aacute;rios (0)</span>
+							</div>
+							<div class="subjects">
+								<span>Assunto:</span>
+								<tal:repeat repeat="item post/subject">
+									<a class="post-subject" tal:content="item"></a>
+									<span tal:condition="not: repeat/item/end">, </span>
+								</tal:repeat>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Search Subject -->
+					<form id="search-subject" method="post" action="blog-search">
+						<input type="hidden" name="search-subject" value="">
+					</form>
+				
+				</div>
 				
 				<!-- Footer -->
 				<div metal:use-macro="context/vindula_macro_blogfooter/macros/blogfooter"></div>

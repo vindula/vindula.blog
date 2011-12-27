@@ -1,7 +1,7 @@
 <metal:macro metal:define-macro="blogsearch">
 	<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/vindula_blog.js"></script>
 	<form id="blogsearch" method="post" action="blog-search">
-		<input type="text" class="inputLabelActive" value="Busca no Blog" size="18" name="search-word">
-		<input type="submit" value="Buscar" class="searchButton">
+		<input type="text" class="inputLabelActive" value="Busca no Blog " size="18" name="search-word">
+		<input type="submit" value="" class="searchButton">
 	</form>
 </metal:macro>

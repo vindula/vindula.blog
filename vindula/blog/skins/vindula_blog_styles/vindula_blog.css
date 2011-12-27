@@ -2,23 +2,49 @@
  * * * VINDULA BLOG * * *
  */
 
+/* Backgraund */
+.blog {
+	background-color: #FBFBFB;
+}
+.blog a {
+	color: #0039BA;
+    text-decoration: underline;
+}
+.blog .portlets-area {
+	float: right;
+	width: 280px;
+}
+.blog .blog-area {
+	width: 664px;
+}
 
-/* Top and Menu */
+/* Top and Menu...start */
 .blog #blog-top-title {
 	height: 130px;
 	clear: both;
 } 
-
 .blog #blog-top-title #title {
 	float: left;
-	width: 259px;
+	width: 223px;
 	height:90px;
-	margin: 20px;
+	padding: 20px;
+	text-align: center;
+	background: #0039ba; /* Regras para o gradiente diagonal */
+	background: -moz-linear-gradient(45deg,  #0039ba 0%, #2e64de 100%, #7db9e8 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#0039ba), color-stop(100%,#2e64de), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(45deg,  #0039ba 0%,#2e64de 100%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(45deg,  #0039ba 0%,#2e64de 100%,#7db9e8 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(45deg,  #0039ba 0%,#2e64de 100%,#7db9e8 100%); /* IE10+ */
+	background: linear-gradient(45deg,  #0039ba 0%,#2e64de 100%,#7db9e8 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0039ba', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.blog #blog-top-title #title span {
 	font-size: 20px;
 	font-weight: bold;
 	text-transform: uppercase;
-}
-
+	color: #FFFFFF;
+	line-height: 24px;
+} 
 .blog #blog-top-title #img {
 	float: left;
 	height: 130px;
@@ -32,12 +58,10 @@
 	width: 680px;
 	height: 130px;
 } 
-
 .blog #blog-top-menu {
 	margin-bottom: 40px;
 	clear: both;
 }
-
 .blog #blog-top-menu ul {
 	height: 40px;
 	margin: 0;
@@ -47,7 +71,6 @@
 	background-image: url(back-menu.jpg);
 	background-repeat: repeat-x;
 }
-
 .blog #blog-top-menu ul li {
 	height: 30px;
 	margin: 0 -4px;;
@@ -55,67 +78,154 @@
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
-	color: #205C90;
+	color: #0039BA;
     list-style: none outside none;
 	cursor: pointer;
 	border-right: 2px solid #FFFFFF;
 }
-
 .blog #blog-top-menu ul li.hover,
 .blog #blog-top-menu ul li.active {
 	background-color: #205C90;
 	color: #FFFFFF;
 }
+/* Top and Menu...end */
 
-/* Blog View */
+
+/* Blog View...start */
 .blog #blog-abaut,
 .blog #blog-authors {
 	display: none;
+	background-color: #FBFBFB;
+	margin: 0 20px 40px;
 }
-
-
-/* Post View */
-.blog #post {
+.blog #blog-abaut .contents,
+.blog #blog-authors .contents{
+	background-color: #FFFFFF;
 	border: 1px solid #D7D7D7;
-	padding: 20px;
 	margin-bottom: 40px;
+	padding: 20px;
 }
+/* Blog View...end */
 
+
+/* Search View...start */
+.blog .sch-title, 
+.blog .sch-term {
+	margin-left: 20px;
+ 	display: inline;
+    color: #6D6E71;
+}
+.blog .sch-term {
+	margin-left: 0;
+	font-style: italic;
+}
+/* Search View...end */
+
+
+/* Post View...start */
+.blog #post {
+	background-color: #FFFFFF;
+	border: 1px solid #D7D7D7;
+	margin: 0 20px 40px;
+}
+.blog #post .post-content {
+	padding: 20px;
+}
 .blog h1.post-title {
 	font-size: 21px;
 	font-weight: bold;
-	color: #205C90;
+	color: #0039BA;
 	margin: 5px 0 10px 0;
+	border: none;
 }
-
 .blog span.date {
+	color: #AAAAAA;
 	font-weight: bold;
 	text-transform: uppercase;
 }
-
 .blog div.post-image {
+	color: #636363;
 	text-align: center;
 	margin: 10px 0;
 }
-
-.blog #post .read-more {
-	margin: 10px 0;
+.blog div.post-text {
+	margin-top: 12px;
 }
-
+.blog #post .post-bottom {
+	background-image: url(back-post.jpg);
+	height: 30px;
+    margin-top: 15px;
+	padding: 10px;
+}
+.blog #post .post-bottom span {
+	font-weight: bolder;
+}
+.blog #post .post-bottom .btn-comment {
+	float:left;
+	background-image: url(btn-comment.jpg);
+	background-repeat: no-repeat; 
+    margin: 0 20px 0 10px;
+    padding: 8px 0 0 40px;
+    width: 117px;
+  	height: 23px;
+	color: #FFFFFF;
+}
+.blog #post .post-bottom .btn-comment span {
+	color: #FFFFFF;
+}
+.blog #post .post-bottom .subjects {
+	float:left;
+	margin-top: 10px;
+}
+.blog #post .read-more {
+	margin-top: 15px;
+}
 .blog #post .post-subject {
 	cursor:pointer;
 }
+/* Post View...end */
+
+
+/* Footer...start */
+#blog-footer {
+	background-color: #0039BA;
+	margin-top: 20px;
+	padding: 8px 15px;
+}
+#blog-footer p {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+/* Footer...end */
+
 
 /* 
- * * * VINDULA PORTLET BLOG FILES * * *
+ * * * PORTLET BLOG FILES * * *
  */
+#cycle-blogfiles span {
+	display: inline;
+}
 #blogfiles a {
 	cursor:pointer;
 }
-
-#cycle-prev,
-#cycle-next { 
-	cursor:pointer; 
+#blogfiles ul {
+	list-style: none;
+	margin: 10px 0 0;
+}
+#cycle-next,
+#cycle-prev {
+	float: left;
+	cursor:pointer;
+	width: 20px;
+	height: 20px;
+}
+#cycle-next {
+	background-image: url(back-set-right.jpg);
+	background-repeat: no-repeat;
+}
+#cycle-prev {
+	background-image: url(back-set-left.jpg);
+	background-repeat: no-repeat;
 }
 #cycle-nav a {
 	display:none;

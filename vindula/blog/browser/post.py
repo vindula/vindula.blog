@@ -19,4 +19,5 @@ class PostView(BaseView):
         blog = self.getBlogContext(post.aq_inner)
         if blog:
             D['context-blog'] = blog.absolute_url()
+            D['portlets'] = blog.getPortlets()
         return D
