@@ -7,7 +7,6 @@ $j(document).ready(function(){
 	/* Portlet Blog Files */
 	$j('#blogsearch input[name=search-word]').focus(function() {
   		$j(this).val("");
-		$j(this).removeClass();
 	});
 	
 	
