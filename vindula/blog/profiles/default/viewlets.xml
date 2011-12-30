@@ -1,0 +1,12 @@
+<object>
+    <hidden manager="plone.belowcontent" skinname="plone.app.layout.viewlets.interfaces.IBelowContentBody">
+        <viewlet name="plone.comments" />
+    </hidden>
+	
+	<order manager="plone.belowcontent" skinname="plone.app.layout.viewlets.interfaces.IBelowContent"
+           based-on="Plone Default">
+        <viewlet name="vindula.comments_post"
+                 insert-before="*" />
+    </order>
+	
+</object>

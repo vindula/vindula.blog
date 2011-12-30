@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 
 <object name="portal_skins" allow_any="False" cookie_persistence="False" 
-		meta_type="Plone Skins Tool"
-		default_skin="Caixa Blog">
-
+		meta_type="Plone Skins Tool">
+			
  <object name="vindula_blog_images"
     meta_type="Filesystem Directory View"
     directory="vindula.blog:skins/vindula_blog_images"/>

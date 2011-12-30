@@ -1,5 +1,5 @@
 <metal:macro metal:define-macro="blogtop">	
-		<div tal:define="view python:context.restrictedTraverse('@@blog-macros');
+		<tal:define define="view python:context.restrictedTraverse('@@blog-macros');
 		                 blog view/getBlogTop | nothing"
 			 tal:condition="blog">
 			 	
@@ -23,5 +23,5 @@
 					<li id="authors" tal:condition="blog/menu_authors">Autores</li>
 				</ul>
 			</div>
-		</div>
+		</tal:define>
 </metal:macro>
