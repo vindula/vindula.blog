@@ -29,6 +29,7 @@
 	height:90px;
 	padding: 20px;
 	text-align: center;
+	display: table-cell;
 	background: #0039ba; /* Regras para o gradiente diagonal */
 	background: -moz-linear-gradient(45deg,  #0039ba 0%, #2e64de 100%, #7db9e8 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#0039ba), color-stop(100%,#2e64de), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
@@ -180,9 +181,11 @@
 .blog #post .read-more {
 	margin-top: 15px;
 }
-.blog #post .post-subject {
-	cursor:pointer;
+.blog #post .discussion {
+	margin-top: 30px;
 }
+
+
 /* Post View...end */
 
 

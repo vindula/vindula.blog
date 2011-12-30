@@ -17,9 +17,6 @@
 	<body>
 		<metal:main fill-slot="main">
 	 		<div class="blog" tal:define="post view/getPost">
-	 			
-				<!-- Menu -->
-				<div metal:use-macro="context/vindula_macro_blogtop/macros/blogtop"></div>
 				
 				<!-- Portlets -->
 				<div class="portlets-area" tal:condition="post/portlets">
@@ -48,11 +45,16 @@
 							
 							<div class="post-text" tal:content="structure post/text"></div>
 						</div>
+<<<<<<< HEAD
 						<div class="post-bottom" >
 							<div class="btn-comment">
 								<span>Coment&aacute;rios (0)</span>
 							</div>
 							<div class="subjects" tal:condition="post/subject">
+=======
+						<div class="post-bottom" tal:condition="post/subject">
+							<div class="subjects">
+>>>>>>> 8a79c95c9b9b0f727f36587535e2d9a55296f4de
 								<span>Assunto:</span>
 								<tal:repeat repeat="item post/subject">
 									<a class="post-subject" tal:content="item"></a>
@@ -60,6 +62,7 @@
 								</tal:repeat>
 							</div>
 						</div>
+						<div tal:replace="structure provider:plone.belowcontent" />
 					</div>
 					
 					<!-- Search Subject -->

@@ -26,9 +26,6 @@
 								          b_start python:0;
 								          b_start request/b_start | b_start">
 				
-				<!-- Menu -->
-				<div metal:use-macro="context/vindula_macro_blogtop/macros/blogtop"></div>
-				
 				<!-- Portlets -->
 				<div class="portlets-area" tal:condition="context/portlets">
 					<tal:define define="global define_area string: blog-area" />

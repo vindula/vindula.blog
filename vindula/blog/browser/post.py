@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from vindula.blog.browser.base import BaseView
+from plone.app.layout.viewlets.comments import CommentsViewlet
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 class PostView(BaseView):
     
@@ -21,3 +23,6 @@ class PostView(BaseView):
             D['context-blog'] = blog.absolute_url()
             D['portlets'] = blog.getPortlets()
         return D
+    
+class CommentsPost(CommentsViewlet):
+    render = ViewPageTemplateFile("templates/comments.pt")

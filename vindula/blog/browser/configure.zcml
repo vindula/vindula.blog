@@ -65,6 +65,22 @@
   <browser:resourceDirectory
       name="vindula.blog.templates"
       directory="templates"
-      />	
+      />
+	
+  <!--browser:viewlet
+        name="plone.comments"
+        for="Products.CMFCore.interfaces.IContentish"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+		class="plone.app.layout.viewlets.comments.CommentsViewlet"
+        permission="zope2.View"
+        /-->
+		
+  <browser:viewlet
+    	name="vindula.comments_post"
+	    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+	    class=".post.CommentsPost"
+	    for="Products.CMFCore.interfaces.IContentish"
+	    permission="zope2.View"
+  />
 	  
 </configure>
