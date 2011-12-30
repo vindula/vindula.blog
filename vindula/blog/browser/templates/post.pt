@@ -48,11 +48,11 @@
 							
 							<div class="post-text" tal:content="structure post/text"></div>
 						</div>
-						<div class="post-bottom" tal:condition="post/subject">
+						<div class="post-bottom" >
 							<div class="btn-comment">
 								<span>Coment&aacute;rios (0)</span>
 							</div>
-							<div class="subjects">
+							<div class="subjects" tal:condition="post/subject">
 								<span>Assunto:</span>
 								<tal:repeat repeat="item post/subject">
 									<a class="post-subject" tal:content="item"></a>

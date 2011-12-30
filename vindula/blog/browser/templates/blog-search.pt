@@ -16,9 +16,15 @@
 	
 	<body>
 		<metal:main fill-slot="main">
+			
+			
 			<div class="blog" tal:define="results view/searchPosts | nothing;
 										  term python:context.REQUEST.get('search-word') or '';
-										  subject python:context.REQUEST.get('search-subject') or ''">
+										  subject python:context.REQUEST.get('search-subject') or '';
+										  Batch python:modules['Products.CMFPlone'].Batch;
+								          b_size python:int(context.getNumber_posts());
+								          b_start python:0;
+								          b_start request/b_start | b_start">
 				
 				<!-- Menu -->
 				<div metal:use-macro="context/vindula_macro_blogtop/macros/blogtop"></div>
@@ -45,7 +51,8 @@
 					<!-- Search Results -->
 					<span tal:condition="not: results">N&atilde;o foram encontrados posts com este termo de pesquisa.</span>
 	
-					<div id="post" tal:condition="results" tal:repeat="post results">
+					<div id="post" tal:condition="results"  tal:define="batch python:Batch(results, b_size, int(b_start), orphan=0);"
+										   					tal:repeat="post batch">
 						<div class="post-content">
 							<span class="date" tal:content="post/date"></span>
 							<span class="signature" tal:content="string: / ${post/signature}"
@@ -58,11 +65,11 @@
 								<a tal:attributes="href post/url">&raquo; Leia mais</a>
 							</div>
 						</div>
-						<div class="post-bottom" tal:condition="post/subject">
+						<div class="post-bottom">
 							<div class="btn-comment">
 								<span>Coment&aacute;rios (0)</span>
 							</div>
-							<div class="subjects">
+							<div class="subjects" tal:condition="post/subject">
 								<span>Assunto:</span>
 								<tal:repeat repeat="item post/subject">
 									<a class="post-subject" tal:content="item"></a>
@@ -76,6 +83,11 @@
 					<form id="search-subject" method="post" action="blog-search">
 						<input type="hidden" name="search-subject" value="">
 					</form>
+					
+					<!-- Navigation -->
+					<div tal:define="batch python:Batch(results, b_size, int(b_start), orphan=0);">
+						<div metal:use-macro="here/batch_macros/macros/navigation" />
+					</div>
 				
 				</div>
 				

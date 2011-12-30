@@ -6,11 +6,11 @@
 			<!-- Title -->
 			<div id="blog-top-title">
 				<div id="title">
-					<span tal:content="blog/title"></span>
+					<span tal:content="blog/title|nothing"></span>
 				</div>
 				<div id="img">
-					<a tal:attributes="href blog/url">
-					<img tal:attributes="src blog/image" tal:condition="blog/image">
+					<a tal:attributes="href blog/url|nothing">
+					<img tal:attributes="src blog/image|nothing" tal:condition="blog/image|nothing">
 					</a>
 				</div>
 			</div>
@@ -18,9 +18,13 @@
 			<!-- Menu -->
 			<div id="blog-top-menu">
 				<ul tal:condition="python: not (blog['menu_initial'] == False and blog['menu_abaut'] == False and blog['menu_authors'] == False)">
-					<li id="initial" tal:condition="blog/menu_initial">In&iacute;cio</li>
-					<li id="abaut" tal:condition="blog/menu_abaut">Sobre o Blog</li>
-					<li id="authors" tal:condition="blog/menu_authors">Autores</li>
+					<a tal:attributes="href context/absolute_url|nothing" tal:condition="python:context.portal_type=='Blog'">
+						<li id="initial" tal:condition="blog/menu_initial|nothing">In&iacute;cio</li></a>
+					<tal:cond condition="python: context.portal_type!='Blog'">
+						<li id="initial" tal:condition="blog/menu_initial|nothing">In&iacute;cio</li>	
+					</tal:cond>
+					<li id="abaut" tal:condition="blog/menu_abaut|nothing">Sobre o Blog</li>
+					<li id="authors" tal:condition="blog/menu_authors|nothing">Autores</li>
 				</ul>
 			</div>
 		</div>
