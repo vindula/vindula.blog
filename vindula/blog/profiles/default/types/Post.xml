@@ -12,7 +12,9 @@
  <property name="immediate_view">post-view</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
- <property name="allowed_content_types"/>
+ <property name="allowed_content_types">
+ 	<element value="Comentario"/>
+</property>
  <property name="allow_discussion">True</property>
  <property name="default_view">post-view</property>
  <property name="default_view_fallback">False</property>
@@ -36,5 +38,13 @@
          url_expr="string:${object_url}/edit" 
          visible="True">
   <permission value="Modify portal content"/>
+ </action>
+ <action title="Comentarios" 
+         action_id="comments"
+         category="object" 
+         condition_expr=""
+         url_expr="string:${object_url}/management-comments" 
+         visible="True">
+  <permission value="Managements comments in post"/>
  </action>
 </object>

@@ -1,0 +1,158 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="en" 
+	  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+	  xmlns:metal="http://xml.zope.org/namespaces/metal" 
+	  xmlns:i18n="http://xml.zope.org/namespaces/i18n" 
+	  metal:use-macro="here/main_template/macros/master" 
+	  i18n:domain="vindula.blog">
+
+	<head>
+		<metal:css fill-slot="style_slot">
+			<style type="text/css">@import "http://www.arquivo.novaintranet.caixa/css/internas_lib.css";</style>
+			<style type="text/css">@import "http://www.arquivo.novaintranet.caixa/css/cabecalho_jornal.css";</style>
+			<style type="text/css">@import "http://www.arquivo.novaintranet.caixa/css/atualidade.css";</style>
+			<style type="text/css">@import "http://www.arquivo.novaintranet.caixa/css/fancy-atualidade.css";</style>
+			<style type="text/css">@import "http://www.arquivo.novaintranet.caixa/css/caixa_pelo_pais.css";</style>
+	        <style type="text/css">@import "http://www.arquivo.novaintranet.caixa/css/comentarios.css";</style>
+		</metal:css>
+        <metal:js fill-slot="javascript_head_slot">
+        	<script type="text/javascript" tal:attributes=" src string: ${context/portal_url}/comentarios_blog.js"></script>
+        </metal:js>    	
+	</head>
+	
+	<body>
+		<metal:main fill-slot="main">
+			<div id="container-geral" class="width776px margin-top-1px" tal:define="review_state request/review_state | python:[];
+																					aprova-comentarios view/aprovaComentarios | nothing">
+	            <div class="width589px float-left">
+	                <div class="width548px padding-left20px">
+	                    <div class="margin-top20px border-bottom-laranja height18px padding-bottom10px margin-bottom10px">
+	                        <div id="atualidade" class="float-left width90">
+	                            <h1 class="font-bold font-size18px text-laranja text-up">Gerenciar coment&aacute;rios</h1>
+	                        </div>
+	                        <div id="voltar" class="float-left width10 text-align-right margin-top5px">
+	                            <a href="javascript:onclick=history.back(-1)" class="font-size11px font-bold text-up text-azul">Voltar</a>
+	                        </div>
+	                        <div class="clear-both"></div>
+	                    </div>
+	                    <div class="margin-top10px">
+	                        <div id="data" class="float-left">
+	                            <span class="text-cinza-escuro font-size11px" ><span tal:replace="python:context.aq_parent.Title()">BRASÍLIA</span>, <span tal:replace="python:context.created().strftime('%d/%m/%Y às %I:%M')">segunda-feira, 9 de maio de 2010, 14:33 pm</span></span>
+	                        </div>
+	                    </div>
+	                    <div class="visual-clear"></div><!-- Aplicando Visual Clear -->
+	                    <div id="titulo" class="margin-top20px">
+	                        <h1 class="no-border font-bold font-size21px line-height26px text-azul-escuro" tal:content="context/Title">
+	                            Lorem venenatis doloir sit ami et, consec etur adipisc
+	                            ing elit. Duis auctor frinilla toritor, vesvibulum nibh
+	                        </h1>
+	                    </div>
+	                    <div id="informacoes-comentario" class="margin-top20px">
+	                        <h4 class="text-cinza-escuro font-size14px">Total de comentários sobre essa matéria (<span id="total_comentario"></span>)</h4>
+	                        <div class="margin-top10px">
+	                            <p class="font-size12px text-cinza-escuro">Pendentes (<span id="total_pendente"></span>), Aprovados: (<span id="total_aprovado"></span>), Reprovados (<span id="total_reprovado"></span>)</p>
+	                        </div>
+	                	</div>
+	                    <form action="" method="post" id="form_comentarios">
+	                        <div id="exibicao-itens" class="border-top-cinza border-left-cinza border-right-cinza margin-top20px">
+	                            <div class="controle-larguras">
+	                                <div class="topo-largura385 float-left">
+	                                    <div id="ordenacao-itens">
+	                                        <div id="itens-topo" class="padding-top5px">
+	                                            <label class="text-preto float-left font-bold font-size12px">Exibir itens em estado:</label>
+	                                            <div class="bt-aplicar float-right margin-right11px">
+	                                                <input type="hidden" name="form.submitted" value="1" />
+	                                                <a href="javascript:;" id="btn_aplicar">
+	                                                    <img alt="" src="http://www.arquivo.novaintranet.caixa/imagens/bt_aplicar_fundo_cinza.jpg">
+	                                                </a>
+	                                            </div> 
+	                                        </div>
+	                                        <div id="itens-escolha" class="padding-top5px">
+	                                            <div class="item-pendente text-cinza-escuro font-bold float-left font-size12px">
+	                                                <input type="checkbox" id="pendentes" name="review_state" value="pendente"
+	                                                       tal:attributes="checked python:'pendente' in review_state or not review_state">Pendente
+	                                            </div>
+	                                            <div class="item-reprovado font-bold float-left font-size12px">
+	                                                <input type="checkbox" id="reprovado" name="review_state" value="reprovado" 
+	                                                       tal:attributes="checked python:'reprovado' in review_state">Reprovado
+	                                            </div>
+	                                            <div class="item-aprovado text-verde font-bold float-left font-size12px">
+	                                                <input type="checkbox" id="aprovado" name="review_state" value="aprovado"
+	                                                       tal:attributes="checked python:'aprovado' in review_state">Aprovado
+	                                            </div>
+	                                            <div class="todos-itens text-cinza-escuro font-bold float-left font-size12px">
+	                                                <input type="checkbox" id="todo" name="review_state" value="todos"
+	                                                       tal:attributes="checked python:'todos' in review_state">Todos
+	                                            </div>
+	                                        </div>
+	                                        <div class="visual-clear"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="topo-largura79 border-left-cinza float-left">
+	                                    <div class="opcao-item-aprovado padding-top10px text-align-center">
+	                                        <h5 class="text-verde font-bold font-size12px">Aprovar</h5>
+	                                        <p class="font-size10px line-height15px">
+	                                            <a href="javascript:;" class="text-azul marcacao aprovar todos">Todos</a>
+	                                        </p>
+	                                        <p class="font-size10px line-height15px">
+	                                            <a href="javascript:;" class="text-azul marcacao aprovar nenhum">Nenhum</a>
+	                                        </p>
+	                                    </div>
+	                                </div>
+	                                <div class="topo-largura79 border-left-cinza float-left">
+	                                    <div class="padding-top10px text-align-center opcao-item-reprovado">
+	                                        <h5 class="font-bold font-size12px">Reprovar</h5>
+	                                        <p class="font-size10px line-height15px">
+	                                            <a href="javascript:;" class="text-azul marcacao reprovar todos">Todos</a>
+	                                        </p>
+	                                        <p class="font-size10px line-height15px">
+	                                            <a href="javascript:;" class="text-azul marcacao reprovar nenhum">Nenhum</a>
+	                                        </p>
+	                                    </div>
+	                                </div>
+	                                <div class="clear-both"></div>
+	                            </div>
+	                            <div id="listagem_comentarios">
+	                                <div metal:use-macro="context/comentarios_blog_pendentes/macros/comentarios_pendentes"/>
+	                            </div>
+	                        </div>
+	                        <div id="conteudo-especifico">
+	                            <div class="padding-bottom5px width256px border-bottom-laranja margin-top40px margin-bottom20px" id="comentario">
+	                                <h4 class="no-border font-bold font-size14px text-laranja text-up">MENSAGEM DO ADMINISTRADOR</h4>
+	                            </div>
+	                            <div class="padding-bottom20px">
+	                                <div class="enviar-mensagem padding-bottom10px text-cinza-escuro font-bold font-size14px">
+	                                    <input type="checkbox" value="1" name="enviar_aprovados" 
+	                                           tal:attributes="checked python:request.get('enviar_aprovados', False)">Enviar mensagem para Aprovados
+	                                </div>
+	                                <div class="border-cinza padding-top10px padding-left10px padding-right10px padding-bottom10px" id="content-coment">
+	                                    <div id="autor">
+	                                        <span class="font-size12px text-azul">Edite abaixo a mensagem para os “Aprovados”</span>
+	                                    </div>
+	                                    <div class="coment">
+	                                        <textarea id="mensagem_aprovados" name="mensagem_aprovados"></textarea>
+	                                    </div><!-- fecha div coment -->
+	                                </div>
+	                            </div>
+	                            <div class="padding-bottom20px">
+	                                <div class="enviar-mensagem padding-bottom10px text-cinza-escuro font-bold font-size14px">
+	                                    <input type="checkbox" value="1" name="enviar_reprovados"
+	                                           tal:attributes="checked python:request.get('enviar_reprovados', False)"/>Enviar mensagem para Reprovados
+	                                </div>
+	                                <div class="border-cinza padding-top10px padding-left10px padding-right10px padding-bottom10px" id="content-coment">
+	                                    <div id="autor">
+	                                        <span class="font-size12px text-azul">Edite abaixo a mensagem para os Reprovados</span>
+	                                    </div>
+	                                    <div class="coment">
+	                                        <textarea id="mensagem_reprovados" name="mensagem_reprovados"></textarea>
+	                                    </div><!-- fecha div coment -->
+	                                </div>
+	                            </div>                        
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+			</div>
+		</metal:main>
+	</body>
+</html>	

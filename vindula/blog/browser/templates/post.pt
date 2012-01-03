@@ -11,7 +11,13 @@
         <metal:js fill-slot="javascript_head_slot">
         	<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/vindula_blog.js"></script>
             <script type="text/javascript" tal:attributes="src string: ${context/portal_url}/menu_blog.js"></script>
-        </metal:js>    
+			<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/fancybox_comments.js"></script>
+			<script type="text/javascript" src="http://www.arquivo.novaintranet.caixa/js/jquery.fancybox-1.3.1.pack.js"></script>
+        </metal:js>
+		
+		<metal:styleslot fill-slot="style_slot">
+    		<link rel="stylesheet" href="http://www.arquivo.novaintranet.caixa/css/fancybox-caixa.css" type="text/css">
+		</metal:styleslot>		
 	</head>
 	
 	<body>
@@ -45,23 +51,15 @@
 							
 							<div class="post-text" tal:content="structure post/text"></div>
 						</div>
-<<<<<<< HEAD
-						<div class="post-bottom" >
-							<div class="btn-comment">
-								<span>Coment&aacute;rios (0)</span>
-							</div>
-							<div class="subjects" tal:condition="post/subject">
-=======
-						<div class="post-bottom" tal:condition="post/subject">
-							<div class="subjects">
->>>>>>> 8a79c95c9b9b0f727f36587535e2d9a55296f4de
-								<span>Assunto:</span>
-								<tal:repeat repeat="item post/subject">
-									<a class="post-subject" tal:content="item"></a>
-									<span tal:condition="not: repeat/item/end">, </span>
-								</tal:repeat>
-							</div>
+						
+						<div class="subjects-page-post" tal:condition="post/subject">
+							<span>Assunto:</span>
+							<tal:repeat repeat="item post/subject">
+								<a class="post-subject" tal:content="item"></a>
+								<span tal:condition="not: repeat/item/end">, </span>
+							</tal:repeat>
 						</div>
+						
 						<div tal:replace="structure provider:plone.belowcontent" />
 					</div>
 					

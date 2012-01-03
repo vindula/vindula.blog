@@ -83,7 +83,7 @@
 					
 					<!-- Navigation -->
 					<div tal:define="batch python:Batch(results, b_size, int(b_start), orphan=0);">
-						<div metal:use-macro="here/batch_macros/macros/navigation" />
+						<div metal:use-macro="context/vindula_macro_blognavigation/macros/blognavigation" />
 					</div>
 				
 				</div>

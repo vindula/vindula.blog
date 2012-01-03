@@ -59,6 +59,15 @@
     	permission="zope2.View"
     	allowed_attributes="organize getFolder"
     	/>
+		
+  <browser:page
+  		for="*"
+    	name="management-comments"
+		template="templates/management-comments.pt"
+    	class=".post.ManagementCommentsView"
+    	permission="zope2.View"
+    	allowed_attributes="addComment get_comentarios aprovaComentarios"
+    	/>
 
   <!-- Directories --> 	
 	  

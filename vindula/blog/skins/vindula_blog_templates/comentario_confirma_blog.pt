@@ -1,0 +1,37 @@
+<html>
+<head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body tal:define="view python:context.restrictedTraverse('@@management-comments');
+				  comentario view/addComment">
+    <div id="geral-cadastro" tal:condition="python: comentario == 'ok'">
+        <div id="borda-lateral" class="padding-bottom20px">
+            <div class="visual-clear"></div>
+            <div id="controle-conteudo" class="padding-top5px">
+                <div class="border-bottom-laranja margin-bottom10px" id="classificado">
+                    <h4 class="no-border font-bold font-size14px text-laranja text-up margin-bottom120px">Comente esta matéria</h4>
+                </div>
+                <div id="conteudo-confimacao">
+                    <div class="texto-confirmacao">
+                        <h5 class="font-no-bold text-preto font-size12px">Confirmação de comentário</h5>
+                    </div>
+                    <div id="mensagem-confirmacao" class="text-align-center margin-top10px">
+                        <div id="imagem-confirmacao" class="float-left">
+                            <img src="http://www.arquivo.novaintranet.caixa/imagens/interrogacao.gif" alt=" " />
+                        </div>
+                        <div id="texto-confirmacao" class="padding-top10px">
+                            <p class="text-azul font-bold font-size14px">Seu comentário foi registrado com sucesso.</p>
+                            <p class="text-azul font-bold font-size14px">Agradecemos a sua participação</p>
+                        </div>
+                        
+                        <div class="visual-clear"></div>
+                    </div>
+                
+                </div>     
+            </div>
+        </div>
+    </div> 
+    <div tal:condition="python: comentario != 'ok'" tal:content='comentario'>
+    </div>
+</body>
+</html>

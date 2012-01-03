@@ -104,7 +104,7 @@
 		<tal:condition condition="n">
 	        <a href=""
 	           tal:attributes="href python: '%s?%s' % (url , mq( request.form, {batch.b_start_str:n.first} ))">
-	           <span i18n:translate="batch_next_x_items" tal:omit-tag="">
+	           <span tal:omit-tag="">
 	               Proxima >
 	           </span>
 	        </a>

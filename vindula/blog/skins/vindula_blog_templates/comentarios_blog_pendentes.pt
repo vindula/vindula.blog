@@ -1,0 +1,54 @@
+<metal:macro metal:define-macro="comentarios_pendentes"
+		     tal:define="estados python:request.get('review_state', ['pendente']);
+                         review_state python:('todos' not in estados) and estados or '';
+                         comentarios python:context.restrictedTraverse('@@management-comments').get_comentarios(review_state);
+                         global pendente python:0;
+                         global aprovado python:0;
+                         global reprovado python:0">
+											 
+    <table cellspacing="0" cellpadding="0">
+        <tr class="controle-larguras comentario" tal:repeat="comentario comentarios">
+            <tal:define tal:define="global pendente python:(comentario['Estado']=='pendente') and pendente+1 or pendente;
+                                    global aprovado python:(comentario['Estado']=='aprovado') and aprovado+1 or  aprovado;
+                                    global reprovado python:(comentario['Estado']=='reprovado') and reprovado+1 or reprovado;" />
+
+            <td class="largura385 border-bottom-cinza padding-top10px padding-right10px">
+                <div class="margin-left10px" id="content-coment">
+                    <div id="autor">
+                        <span class="font-size12px text-azul">
+                            <span tal:replace="comentario/Usuario">Irma Ugarelli Manfreti, DF </span> <span> | </span>
+                            <span class="text-laranja font-size12px font-bold" tal:content="comentario/Data">23/03/2012 as 16:23</span>
+                        </span>
+                    </div>
+                    <div class="coment">
+                        <p class="line-height17px text-cinza-escuro font-size12px" tal:content="python:comentario['Texto']">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,  eaque ipsa quae ab illo inventore veritatis et quasi eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+                    </div><!-- fecha div coment -->
+                </div>
+            </td>
+            <td class="largura79 border-bottom-cinza border-left-cinza padding-top10px padding-right10px">
+                <div class="escolha-item text-align-center">
+                    <input type="radio" name="pendentes" value="1" class="aprovado" 
+                           tal:attributes="name comentario/UID; 
+                                           checked python:request.get(comentario['UID']) == '1'" />
+                </div>
+            </td>
+            <td class="largura79 border-bottom-cinza border-left-cinza padding-top10px padding-right10px">
+                <div class="escolha-item text-align-center">
+                    <input type="radio" name="pendentes" value="0" class="reprovado" 
+                           tal:attributes="name comentario/UID;
+                                           checked python:request.get(comentario['UID']) == '0'" />
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <input type="hidden" id="num_aprovados" value="0" tal:attributes="value aprovado | string:0">
+    <input type="hidden" id="num_reprovados" value="0" tal:attributes="value reprovado | string:0">
+    <input type="hidden" id="num_pendentes" value="0" tal:attributes="value pendente | string:0">
+
+    <div tal:condition="not: comentarios">
+        Nenhum coment&aacute;rio encontrado
+    </div>
+
+    <div class="visual-clear"></div>
+</metal:macro>

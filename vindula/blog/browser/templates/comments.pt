@@ -1,96 +1,124 @@
 <tal:block define="userHasReplyPermission view/can_reply;
                    isDiscussionAllowed view/is_discussion_allowed;
-                   replies view/get_replies;
+                   replies view/get_comentarios;
                    isAnon view/is_anonymous"
-           i18n:domain="plone">
+           		   i18n:domain="plone">
+           		   	
     <div class="discussion"
-         tal:condition="python:replies or (userHasReplyPermission and isDiscussionAllowed) or (isAnon and not userHasReplyPermission and isDiscussionAllowed)">
+         tal:condition="python:replies or (userHasReplyPermission and isDiscussionAllowed) or (isAnon and not userHasReplyPermission and isDiscussionAllowed)"
+		 tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+		 			 b_size python:10;
+			         b_size request/b_size | b_size;
+			         b_start python:0;
+			         b_start request/b_start | b_start;
+					 tot_replies python:len(replies) or b_size">
         
-		<div class="title-comments">
-			<span>
+		<div class="header-comments">
+			<span class="title" tal:content="python: 'Comentarios('+str(len(replies))+')'">
 				Comentarios(xx)
 			</span>
-		</div> 	
+			<a tal:attributes="href string: ${context/absolute_url}?b_size:int=${tot_replies}" class="display-all">
+				Exibir todos os comentarios
+			</a>
+		</div>
 		
-        <form name="reply"
-              action=""
-              method="post"
-              tal:condition="python:userHasReplyPermission and isDiscussionAllowed"
-              tal:attributes="action string:${context/absolute_url}/discussion_reply_form">
-
-              <input class="standalone"
-                     style="margin-bottom: 1.25em;"
-                     type="submit"
-                     value="Add Comment"
-                     i18n:attributes="value label_add_comment;"
-                     />
-        </form>
-        <form tal:condition="python:isAnon and not userHasReplyPermission and isDiscussionAllowed"
-              tal:attributes="action view/login_action">
-            <input class="standalone"
-                   style="margin-bottom: 1.25em;"
-                   type="submit"
-                   value="Log in to add comments"
-                   i18n:attributes="value label_login_to_add_comments;"
-                   />
-        </form>
-
-        <tal:getreplies repeat="reply_dict replies">
-            <div class="comment" style=""
-                tal:define="indent python:reply_dict['depth']*2;
-                            reply python:reply_dict['object']"
-                tal:attributes="style string:margin-left:${indent}em;">
-                
-                <h3>
-                    <a name="comments" tal:attributes="name reply/id">
-                    <span tal:replace="reply/pretty_title_or_id">Comment title</span>
-                    </a>
-                </h3>
-                <div class="documentByLine"
-                     tal:define="creator reply/Creator;
-                                 anonymous_creator python:creator in ('Anonymous User', '');
-                                 mi python:not anonymous_creator and view.member_info(creator);
-                                 fullname python: mi and mi['fullname'] or creator;" >
-                    <span i18n:translate="label_comment_by">Posted by</span>
-                    <span tal:content="fullname"
-                          tal:condition="not:anonymous_creator">Poster Name</span>
-                    <span i18n:translate="label_anonymous_user"
-                          tal:condition="anonymous_creator">Anonymous User</span>
-                    <span i18n:translate="label_commented_at">at</span> 
-                    <span tal:replace="python:view.format_time(reply.ModificationDate())">8/23/2001 12:40:44 PM</span>
-                </div>
-                <div class="commentBody"
-                     tal:content="structure reply/CookedBody">
-                     This is the body text of the comment.
-                </div>
-                <form name="reply"
-                      action="discussion_reply_form"
-                      method="post"
-                      style="display: inline;"
-                      tal:attributes="action string:${reply/absolute_url}/discussion_reply_form"
-                      tal:condition="python:userHasReplyPermission and isDiscussionAllowed">
-                    <input type="hidden"
-                           name="subject"
-                           tal:attributes="value reply/pretty_title_or_id" />
-                    <input class="standalone"
-                           type="submit"
-                           value="Reply"
-                           i18n:attributes="value label_reply;"
-                           />
-                </form>
-                <form name="delete"
-                      action=""
-                      method="post"
-                      style="display: inline;"
-                      tal:condition="view/can_manage"
-                      tal:attributes="action string:${reply/absolute_url}/deleteDiscussion">
-                    <input class="destructive"
-                           type="submit"
-                           value="Remove"
-                           i18n:attributes="value label_remove;"
-                           />
-                </form>
-            </div>
-        </tal:getreplies>
+		<div class="description-comments">
+			<span>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor semper ultricies. Pellentesque vel magna felis, sollicitudin facilisis massa. Fusce in congue nisl.
+			</span>		
+		</div>
+		
+		<a class="fancy-comment" tal:attributes="href string:${context/absolute_url}/add-comment">
+			<div class="button-comments">
+				<span>Comentar</span>
+			</div>
+		</a>
+		
+		<div class="visualClear"></div>
+		<div>
+			<!-- Navigation -->
+			<div tal:define="batch python:Batch(replies, int(b_size), int(b_start), orphan=0);">
+				<div class="size-comments">
+					<span>Itens por pagina</span>
+					<tal:cond condition="python: b_size==10">
+						<span class="current">10,</span>
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=20">20,</a>
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=50">50.</a>
+					</tal:cond>
+					<tal:cond condition="python: b_size==20">
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=10">10,</a>
+						<span class="current">20,</span>
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=50">50.</a>
+					</tal:cond>
+					<tal:cond condition="python: b_size==50">
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=10">10,</a>
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=20">20,</a>
+						<span class="current">50.</span>
+					</tal:cond>
+					<tal:cond condition="python: b_size!=10 and b_size!=20 and b_size!=50">
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=10">10,</a>
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=20">20,</a>
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=50">50.</a>
+					</tal:cond>
+					<div metal:use-macro="context/vindula_macro_blognavigation/macros/blognavigation" />
+				</div>
+				<div class="visualClear"></div>
+			</div>
+		</div>
+		<div class="all-comments">
+	        <tal:getreplies tal:define="batch python:Batch(replies, b_size, int(b_start), orphan=0);"
+						    tal:repeat="reply batch">
+	            <div class="comment">
+	            	
+	                <div class="documentByLine"
+	                     tal:define="creator reply/Usuario;
+	                                 anonymous_creator python:creator in ('Anonymous User', '');
+	                                 mi python:not anonymous_creator and view.member_info(creator);
+	                                 fullname python: mi and mi['fullname'] or creator;" >
+	                    <span class="date-color" tal:content="reply/Data">8/23/2001 12:40:44 PM</span>
+						<span class="date-color"> - </span>
+	                    <span tal:content="fullname"
+	                          tal:condition="not:anonymous_creator">Poster Name</span>
+	                    <span i18n:translate="label_anonymous_user"
+	                          tal:condition="anonymous_creator">Anonymous User</span>
+	                    <span>(matricula)</span> 
+	                </div>
+	                <div class="commentBody"
+	                     tal:content="structure reply/Texto">
+	                     This is the body text of the comment.
+	                </div>
+					<div class="line-comment"></div>
+	            </div>
+	        </tal:getreplies>
+		</div>
+		
+		<!-- Navigation -->
+		<div tal:define="batch python:Batch(replies, int(b_size), int(b_start), orphan=0);">
+			<div class="size-comments">
+				<span>Itens por pagina</span>
+				<tal:cond condition="python: b_size==10">
+					<span class="current">10,</span>
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=20">20,</a>
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=50">50.</a>
+				</tal:cond>
+				<tal:cond condition="python: b_size==20">
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=10">10,</a>
+					<span class="current">20,</span>
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=50">50.</a>
+				</tal:cond>
+				<tal:cond condition="python: b_size==50">
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=10">10,</a>
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=20">20,</a>
+					<span class="current">50.</span>
+				</tal:cond>
+				<tal:cond condition="python: b_size!=10 and b_size!=20 and b_size!=50">
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=10">10,</a>
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=20">20,</a>
+						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=50">50.</a>
+					</tal:cond>
+				<div metal:use-macro="context/vindula_macro_blognavigation/macros/blognavigation" />
+			</div>
+			<div class="visualClear"></div>
+		</div>
     </div>
 </tal:block>

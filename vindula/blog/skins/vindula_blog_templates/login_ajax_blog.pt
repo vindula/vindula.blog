@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+<body>
+    <metal:login define-macro="login">
+
+        <div tal:define="auth nocall:here/acl_users/credentials_cookie_auth|here/cookie_authentication|nothing;
+                        ac_name auth/name_cookie|string:__ac_name;
+                        ac_password auth/pw_cookie|string:__ac_password;
+                        ac_persist auth/persist_cookie|nothing;
+                        login_name python:request.get('login_name', request.get(ac_name, ''));">
+
+            <div id="loginname_field" tal:attributes="field_name ac_name" />
+
+            <form action="login_form"
+                  class="enableAutoFocus"
+                  method="post"
+                  id="login_form"
+                  tal:condition="python:auth">
+                <input type="hidden" name="form.submitted" value="1" />
+                <input type="hidden" name="js_enabled" id="js_enabled" value="0" />
+                <input type="hidden" name="cookies_enabled" id="cookies_enabled" value="" />
+                <input type="hidden" name="login_name" id="login_name" value="" />
+                <input type="hidden" name="pwd_empty" id="pwd_empty" value="0" />
+                
+                <div class="field informacoes-usuario">
+
+	                <label i18n:translate="label_login_name" class="text-preto font-size12px"
+	                    tal:attributes="for ac_name">Login Name</label>
+	
+	                <input type="text"
+	                    size="15"
+	                    tal:attributes="name ac_name;
+	                            id ac_name;
+	                            value login_name;"
+	                    
+	                    />
+            	</div>
+
+	            <div class="field informacao-senha informacoes-usuario">
+	
+	                <label i18n:translate="label_password" class="text-preto font-size12px"
+	                    tal:attributes="for ac_password">Password</label>
+	
+	                <input type="password"
+	                    size="15"
+	                    tal:attributes="name ac_password;
+	                            id ac_password;"
+	                    />
+	               
+	            </div>
+
+                <div class="field" tal:condition="ac_persist">
+
+	                <input type="checkbox"
+	                    class="noborder formRememberName"
+	                    value="1"
+	                    checked="checked"
+	                    id="cb_remember"
+	                    tal:attributes="name ac_persist;
+	                            checked python:request.get(ac_name, '') and 'checked' or None;"
+	                    />
+	
+	                <label for="cb_remember" i18n:translate="label_remember_my_name">Remember my name.</label>
+	
+	                <div i18n:translate="help_remember_my_name"
+	                    class="formHelp">
+	                    Check this to have your user name filled in automatically when you log in later.
+	                </div>
+
+                </div>
+
+                <div class="formControls">
+                </div>
+            </form>
+        </div>
+    </metal:login>
+</body>
+</html>

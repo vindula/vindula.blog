@@ -1,0 +1,253 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <script type="text/javascript">
+    	$j = jQuery.noConflict();
+
+        function inserir_comentario(ficar_logado){
+            $j.ajax({
+                type    : "POST",
+                cache   : false,
+                url     : "comentario_confirma_blog",
+                data    : $j('#comentario_form').serializeArray(),
+                error   : function(){
+                            if (ficar_logado==false) {
+                                $j.post('logout');
+                            };
+                        },
+                success : function(data) {
+                    if (ficar_logado==false) {
+                        $j.post('logout');
+                    };
+                    
+                    $j.fancybox({
+                        'autoDimensions':false,
+                        'content': data,
+                        'scrolling': false,
+                        'width': 429,
+                        'height': 117,
+                        'onClosed': function() { 
+                                        $j('#fancybox-outer').contents().filter('.fancy-bg').removeClass('fancy-laranja-hack'); 
+                                        if ($j.browser.msie) {
+                                            $j('#banner').show();
+                                        }
+                                    }
+                    });
+                }
+            });
+        };
+        
+        function change_fields(enable){
+            if (enable) {
+                if ($j('#login_form').size() > 0) {
+                    $j('.informacoes-usuario label').fadeTo('normal', 1);
+                    $j('#__ac_name').attr('disabled',false).fadeTo('normal', 1);
+                    $j('#__ac_password').attr('disabled',false).fadeTo('normal', 1);
+                }
+                $j('#comentario_field').attr('disabled',false);
+                $j('#comentario_field').fadeTo('normal', 1);
+                $j('#comentario_head').fadeTo('normal', 1);
+                
+            } else {
+                if ($j('#login_form').size() > 0) {
+                    $j('.informacoes-usuario label').fadeTo('normal', 0.5);
+                    $j('#__ac_name').attr('disabled',true).fadeTo('normal', 0.5);
+                    $j('#__ac_password').attr('disabled',true).fadeTo('normal', 0.5);
+                }
+                $j('#comentario_field').attr('disabled',true).fadeTo('normal', 0.5);
+                $j('#comentario_head').fadeTo('normal', 0.5);
+                
+            }
+        }
+        
+        function change_button(enable) {
+            if (enable) {
+                $j('#btnOn').show();
+                $j('#btnOff').hide();
+            } else {
+                $j('#btnOn').hide();
+                $j('#btnOff').show();
+            }
+        }
+        
+        textarea_started=false;
+        
+        function validade_form() {
+            fusr=true;
+            fpass=true;
+            fcom=false;
+            
+            ccon = $j('#concordar').attr('checked');
+            
+            $j('#error').fadeOut();
+            if ($j('#login_form').size() > 0) {
+                fusr=$j('#__ac_name').attr('value')!= "";
+                fpass=$j('#__ac_password').attr('value')!= "";
+            }
+            
+            if (textarea_started) {
+                fcom=$j('#comentario_field').attr('value')!= "";
+            }
+            
+            if (ccon && fusr && fpass && fcom) {
+                change_button(true);
+            } else {
+                change_button(false);
+            }
+            
+        }
+        
+        function show_error_message(message) {
+            $j('#error').html(message);
+            $j('#error').fadeIn();
+        };
+        
+        function update_counter(){
+                var textarea = $j(this);
+                var counter = $j('#charcount');
+                counter.html(textarea.val().length);
+        };
+        
+        $j(document).ready(function(){
+            change_fields(false);
+            change_button(false);
+            //$j('#comentario_field').limitMaxlength({'onEdit':update_counter});
+            $j('#comentario_field').keyup(validade_form);
+            $j('#comentario_field').change(validade_form);
+
+            if ($j('#login_form').size() > 0) {
+                //$j('.informacoes-usuario').contents().filter('label').first().html('Matrícula');
+                $j('#__ac_name').keyup(validade_form);
+                $j('#__ac_password').keyup(validade_form);
+                $j('#__ac_name').change(validade_form);
+                $j('#__ac_password').change(validade_form);
+            }
+            
+            $j('#concordar').change(function() {
+                validade_form();
+                change_fields($j('#concordar').attr('checked'));
+            });
+            
+            $j('#comentario_field').focus(function(){
+                if (textarea_started == false) {
+                    $j(this).html('');
+                    textarea_started=true;
+                }
+            });
+            
+            $j('#submit').click(function(event){
+                event.preventDefault();
+                
+                if (!$j('#concordar').attr('checked')){
+                    show_error_message('O termo de uso precisa ser aceito.');
+                    $j('#concordar').focus();
+                    return;
+                }
+                
+                if ((textarea_started == false)||($j('#comentario_field').attr('value')== "")) {
+                    show_error_message('Nenhum comentário foi preenchido.');
+                    $j('#comentario_field').focus();
+                    return;
+                }
+                
+                if ($j('#login_form').size() <= 0) {
+                    $j.fancybox.showActivity();
+                    inserir_comentario(true);
+                    return;
+                }
+                
+                if ($j('#__ac_name').attr('value')== "") {
+                    show_error_message('A matrícula não foi preenchida.');
+                    $j('#__ac_name').focus();
+                    return;
+                }
+                
+                if ($j('#__ac_password').attr('value')== "") {
+                    show_error_message('A senha não foi preenchida.');
+                    $j('#__ac_password').focus();
+                    return;
+                }
+                
+                $j.fancybox.showActivity();
+                $j.ajax({
+                    type    : "POST",
+                    cache   : false,
+                    url     : "login_form",
+                    data    : $j('#login_form').serializeArray(),
+                    success: function(data) {
+                        if (data.search('error') != -1) {
+                            $j.fancybox.hideActivity();
+                            show_error_message('Matricula ou senha incorreta.');
+                            $j('#__ac_name').focus();
+                            return;
+                        }
+                        inserir_comentario(false);
+                    }
+                });
+            });
+
+
+        });
+    </script>
+
+</head>
+<body>
+    <div id="geral-cadastro">
+        <div class="visual-clear"></div>
+        <div id="controle-conteudo">
+            <div class="border-bottom-laranja margin-bottom10px" id="classificado">
+                <h4 class="no-border font-bold font-size14px text-laranja text-up margin-bottom120px">Comente</h4>
+            </div>
+			
+            <div class="informacoes-termo">
+                <h5 class="font-no-bold text-preto font-size12px">Termo de Uso</h5>
+            </div>
+            <div class="conteudo-termo padding-left10px padding-bottom10px padding-right10px padding-top10px border-cinza1px margin-top10px">
+                <!--tal:content='structure context/@@comentarios-view/get_termo'>-->
+                <p class="text-preto font-size12px">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar nisi eget elit tincidunt vitae elementum neque hendrerit. 
+                    Donec volutpat augue ac odio pellentesque quis volutpat justo porta. Maecenas vitae ultricies massa. Vestibulum lacinia enim lorem. 
+                    Sed leo nulla, blandit in tristique sit amet, aliquet ut ante. Donec porta varius mauris ac gravida. Fusce vulputate ante at quam semper eget tempor dui accumsan.
+                    Nam dignissim dolor. Maecenas vitae ultricies massa. Vestibulum lacinia enim lorem. Sed leo nulla, blandit in tristique sit amet, aliquet ut ante. Donec porta varius mauris ac gravida. 
+                    Fusce vulputate ante at quam semper eget tempor dui accumsan.</p>
+            </div>
+			
+            <div id="termo-opcao" class="margin-top10px text-azul-escuro margin-bottom20px font-size12px ">
+                <input type="checkbox" name="concordar" id="concordar" value="1" />Concordo
+            </div>
+            
+            <div id="comentario-main">
+                <div tal:condition="python:context.portal_membership.isAnonymousUser()">
+                        <div metal:use-macro="context/login_ajax_blog/macros/login"/>
+                </div>
+
+                <div class="informacoes-termo margin-bottom10px margin-top20px">
+                    <div class="margin-bottom10px">
+                        <p id='comentario_head' class="text-preto font-size12px margin-bottom10px">Comentário</p>
+                    </div>
+                    <form id='comentario_form'>
+                        <textarea id='comentario_field' name='comentario' maxlength="500" tal:attributes='maxlength context/tamanho_comentario|string:500'
+                                  tal:content='context/@@comentarios-view/get_texto_comentario'>
+                        </textarea>
+                        <div>
+                            <span id="charcount">0</span>
+                            /
+                            <span tal:content='context/tamanho_comentario|string:500'>500</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="error" class="float-left" style='display:none'>
+                MSG ERRO
+            </div>
+            <div id="bt-confirmar" class="float-right">
+                <a href="#" id='submit'>
+                    <img id='btnOn' src="http://www.arquivo.novaintranet.caixa/imagens/bt_confirmar.jpg" alt=" " />
+                    <img id='btnOff' src="http://www.arquivo.novaintranet.caixa/imagens/bt_confirmar_off.jpg" 
+                        style="display:none" alt=" " />
+                </a>
+            </div>
+        </div>
+    </div>	
+</body>
+</html>
