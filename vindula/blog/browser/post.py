@@ -15,7 +15,7 @@ class PostView(BaseView):
         D['title'] = post.Title()
         D['date'] = self.formatDate(post.getEffectiveDate())
         D['signature'] = self.getPostSignature(post)
-        D['text'] = post.getRawContent()
+        D['text'] = post.getRawContent_text()
         D['subject'] = post.Subject()
         D['image-caption'] = post.getImageCaption()
         if post.getImage():

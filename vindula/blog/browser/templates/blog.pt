@@ -61,6 +61,7 @@
 									<div class="post-text" tal:content="structure post/text"></div>
 								</div>
 								<div class="post-bottom">
+									
 									<div class="btn-comment">
 										<span>Coment&aacute;rios (0)</span>
 									</div>

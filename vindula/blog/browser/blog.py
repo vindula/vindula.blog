@@ -24,7 +24,7 @@ class BlogView(BaseView):
                 D['title'] = obj.Title()
                 D['date'] = self.formatDate(obj.getEffectiveDate())
                 D['signature'] = self.getPostSignature(obj)
-                D['text'] = obj.getRawContent()
+                D['text'] = obj.getRawContent_text()
                 D['subject'] = obj.Subject()
                 D['url'] = obj.absolute_url()
                 D['image-caption'] = obj.getImageCaption()

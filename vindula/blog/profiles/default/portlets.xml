@@ -7,6 +7,6 @@
 			 
 	<portlet addview="vindula.blog.PortletBlogSearch"
 			 title="Portlet Busca no Blog"
-			 description="Portlet com um campo de busca por posts em todo o blog." />		
-
+			 description="Portlet com um campo de busca por posts em todo o blog." />
+			 
 </portlets>

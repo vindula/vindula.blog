@@ -132,7 +132,6 @@ blog_schema = ATFolder.schema.copy() + Schema((
     
 
     # Fieldset "Portlets"
-
     BooleanField(
         name='portlets',
         default=False,
@@ -146,6 +145,61 @@ blog_schema = ATFolder.schema.copy() + Schema((
             i18n_domain='vindula.blog',
         ),
     ), 
+    
+    #Parametros do comentario do blog                                           
+    TextField(
+        name='description_coments',
+        required=False,     
+        #schemata = "Sobre o Blog",  
+        widget=RichWidget(
+            label="Descrição do Comentario",
+            description="Conteúdo livre para mesagens aos usuarios sobre os comentários do blog.",
+            label_msgid='vindula.blog_label_text_description_coments',
+            description_msgid='vindula.blog_help_text_description_coments',
+            i18n_domain='vindula.blog',
+        ),
+    ),
+
+
+# Campos de email ao moderador                                                   
+    TextField(
+        name='email_moderation',
+        required=False,
+        widget=StringWidget(
+            label="E-mail do Moderador do Blog",
+            description="E-mail do responsavel do blog.",
+            label_msgid='vindula.blog_label_email_moderation',
+            description_msgid='vindula.blog_help_email_moderation',
+            i18n_domain='vindula.blog',
+        ),
+    ),
+                                               
+    TextField(
+        name='text_email_moderation',
+        required=False,     
+        #schemata = "Sobre o Blog",  
+        widget=RichWidget(
+            label="Mensagens ao moderador",
+            description="Conteúdo que sera enviado ao moderador via e-mail.",
+            label_msgid='vindula.blog_label_number_description_text_email_moderation',
+            description_msgid='vindula.blog_help_number_description_text_email_moderation',
+            i18n_domain='vindula.blog',
+        ),
+    ),
+    
+# Campo de texto de Comentario
+    TextField(
+        name='termo_comentario',
+        required=False,     
+        #schemata = "Sobre o Blog",  
+        widget=RichWidget(
+            label="Termo dos uso",
+            description="Termo de usos dos comentário que sera mostrado aos usuários do blog.",
+            label_msgid='vindula.blog_label_number_description_text_termo_comentario',
+            description_msgid='vindula.blog_help_number_description_text_termo_comentario',
+            i18n_domain='vindula.blog',
+        ),
+    ),
     
     
 ))
