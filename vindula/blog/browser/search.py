@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from vindula.blog.browser.base import BaseView
+from vindula.blog.browser.post import ManagementCommentsView
 
 class BlogSearchView(BaseView):
     
@@ -20,6 +21,7 @@ class BlogSearchView(BaseView):
                 L = []
                 for post in posts:
                     obj = post.getObject()
+                    comments =  ManagementCommentsView(self.context, self.context.request).get_comentarios(context=obj)
                     D = {}
                     D['title'] = obj.Title()
                     D['date'] = self.formatDate(obj.getEffectiveDate())
@@ -27,6 +29,7 @@ class BlogSearchView(BaseView):
                     D['text'] = self.limitTextSize(600, obj.getContent_text())
                     D['subject'] = obj.Subject()
                     D['url'] = obj.absolute_url()
+                    D['comments'] = len(comments)
                     L.append(D)
                 return L
             else:

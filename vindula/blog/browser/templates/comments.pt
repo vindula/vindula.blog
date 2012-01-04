@@ -1,10 +1,11 @@
 <tal:block define="userHasReplyPermission view/can_reply;
                    isDiscussionAllowed view/is_discussion_allowed;
-                   replies view/get_comentarios;
+                   replies view/getComments;
                    isAnon view/is_anonymous"
            		   i18n:domain="plone">
            		   	
     <div class="discussion"
+		 id="comments"
          tal:condition="python:replies or (userHasReplyPermission and isDiscussionAllowed) or (isAnon and not userHasReplyPermission and isDiscussionAllowed)"
 		 tal:define="Batch python:modules['Products.CMFPlone'].Batch;
 		 			 b_size python:10;
@@ -17,7 +18,7 @@
 			<span class="title" tal:content="python: 'Comentarios('+str(len(replies))+')'">
 				Comentarios(xx)
 			</span>
-			<a tal:attributes="href string: ${context/absolute_url}?b_size:int=${tot_replies}" class="display-all">
+			<a tal:condition="replies" tal:attributes="href string: ${context/absolute_url}?b_size:int=${tot_replies}" class="display-all">
 				Exibir todos os comentarios
 			</a>
 		</div>
@@ -34,10 +35,9 @@
 			</div>
 		</a>
 		
-		<div class="visualClear"></div>
 		<div>
 			<!-- Navigation -->
-			<div tal:define="batch python:Batch(replies, int(b_size), int(b_start), orphan=0);">
+			<div tal:condition="replies" tal:define="batch python:Batch(replies, int(b_size), int(b_start), orphan=0);">
 				<div class="size-comments">
 					<span>Itens por pagina</span>
 					<tal:cond condition="python: b_size==10">
@@ -62,10 +62,9 @@
 					</tal:cond>
 					<div metal:use-macro="context/vindula_macro_blognavigation/macros/blognavigation" />
 				</div>
-				<div class="visualClear"></div>
 			</div>
 		</div>
-		<div class="all-comments">
+		<div tal:condition="replies" class="all-comments">
 	        <tal:getreplies tal:define="batch python:Batch(replies, b_size, int(b_start), orphan=0);"
 						    tal:repeat="reply batch">
 	            <div class="comment">
@@ -87,14 +86,14 @@
 	                     tal:content="structure reply/Texto">
 	                     This is the body text of the comment.
 	                </div>
-					<div class="line-comment"></div>
+					<div tal:condition="not: repeat/reply/end" class="line-comment"></div>
 	            </div>
 	        </tal:getreplies>
 		</div>
 		
 		<!-- Navigation -->
-		<div tal:define="batch python:Batch(replies, int(b_size), int(b_start), orphan=0);">
-			<div class="size-comments">
+		<div tal:condition="replies" tal:define="batch python:Batch(replies, int(b_size), int(b_start), orphan=0);">
+			<div class="size-comments navigation-bottom">
 				<span>Itens por pagina</span>
 				<tal:cond condition="python: b_size==10">
 					<span class="current">10,</span>
@@ -112,13 +111,12 @@
 					<span class="current">50.</span>
 				</tal:cond>
 				<tal:cond condition="python: b_size!=10 and b_size!=20 and b_size!=50">
-						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=10">10,</a>
-						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=20">20,</a>
-						<a tal:attributes="href string: ${context/absolute_url}?b_size:int=50">50.</a>
-					</tal:cond>
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=10">10,</a>
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=20">20,</a>
+					<a tal:attributes="href string: ${context/absolute_url}?b_size:int=50">50.</a>
+				</tal:cond>
 				<div metal:use-macro="context/vindula_macro_blognavigation/macros/blognavigation" />
 			</div>
-			<div class="visualClear"></div>
 		</div>
     </div>
 </tal:block>
