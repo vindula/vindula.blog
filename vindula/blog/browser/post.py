@@ -19,7 +19,7 @@ class PostView(BaseView):
         D['subject'] = post.Subject()
         D['image-caption'] = post.getImageCaption()
         if post.getImage():
-            D['image'] = post.getImage().absolute_url()
+            D['image'] = post.getImage().absolute_url() + '/image_editorial'
         else:
             D['image'] = ''
         blog = self.getBlogContext(post.aq_inner)

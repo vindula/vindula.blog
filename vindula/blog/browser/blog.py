@@ -32,7 +32,7 @@ class BlogView(BaseView):
                 D['image-caption'] = obj.getImageCaption()
                 D['comments'] = len(comments)
                 if obj.getImage():
-                    D['image'] = obj.getImage().absolute_url()
+                    D['image'] = obj.getImage().absolute_url() + '/image_editorial'
                 else:
                     D['image'] = ''
                 L.append(D)

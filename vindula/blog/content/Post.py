@@ -19,6 +19,7 @@ post_schema = ATFolder.schema.copy() + Schema((
             description_msgid='vindula.blog_help_signature',
             i18n_domain='vindula.blog',
         ),
+        sizes={'editorial':(600,600)},
     ),
     
     TextField(

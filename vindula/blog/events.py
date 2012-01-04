@@ -6,6 +6,8 @@ from zope.component import adapter
 from zope.app.container.interfaces import IObjectAddedEvent
 
 from vindula.blog.content.interfaces import IBlog
+from vindula.blog.content.interfaces import IPost
+
 
 @adapter(IBlog, IObjectAddedEvent)
 def create_banco_imagens(context, event):
@@ -22,3 +24,10 @@ def create_banco_imagens(context, event):
        folder_images_data.setConstrainTypesMode(1)
        folder_images_data.setLocallyAllowedTypes(('Image', 'Folder'))
        portal_workflow.doActionFor(folder_images_data, 'publish')
+       
+    
+       
+       
+@adapter(IPost, IObjectAddedEvent)
+def set_compartilhamento(context, event):       
+       context.manage_setLocalRoles("AuthenticatedUsers", [u"Contributor"])
