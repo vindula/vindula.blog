@@ -40,6 +40,10 @@ class CommentsPost(CommentsViewlet):
         blog = self.context.aq_parent.context
         return blog.description_coments
     
+    def getDescriptionComments(self):
+        blog = self.context.aq_parent.context
+        return blog.description_coments
+    
 class ManagementCommentsView(BaseView):
     def addComment(self):  
         comentario=self.context.request.get('comentario',None)

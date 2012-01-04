@@ -62,12 +62,15 @@
 								</div>
 								<div class="post-bottom">
 <<<<<<< HEAD
+<<<<<<< HEAD
 									<a tal:attributes="href string:${post/url}#comments">
 										<div class="btn-comment">
 											<span tal:content="string: Comentários(${post/comments})">Coment&aacute;rios (0)</span>
 										</div>
 									</a>
 =======
+=======
+>>>>>>> 78596eb946233dc113ccd0ed81e9c03ce9e0a7da
 									
 									<div class="btn-comment">
 										<span>Coment&aacute;rios (0)</span>
