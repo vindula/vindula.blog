@@ -15,7 +15,7 @@ class PostView(BaseView):
         D['title'] = post.Title()
         D['date'] = self.formatDate(post.getEffectiveDate())
         D['signature'] = self.getPostSignature(post)
-        D['text'] = post.getRawContent()
+        D['text'] = post.getRawContent_text()
         D['subject'] = post.Subject()
         D['image-caption'] = post.getImageCaption()
         if post.getImage():
@@ -28,12 +28,17 @@ class PostView(BaseView):
             D['portlets'] = blog.getPortlets()
         return D
     
+    
 class CommentsPost(CommentsViewlet):
     render = ViewPageTemplateFile("templates/comments.pt")
     
     def getComments(self):
         return ManagementCommentsView(self.context, self.context.request).get_comentarios()
 
+    
+    def getDescriptionComments(self):
+        blog = self.context.aq_parent.context
+        return blog.description_coments
     
 class ManagementCommentsView(BaseView):
     def addComment(self):  

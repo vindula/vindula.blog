@@ -61,11 +61,18 @@
 									<div class="post-text" tal:content="structure post/text"></div>
 								</div>
 								<div class="post-bottom">
+<<<<<<< HEAD
 									<a tal:attributes="href string:${post/url}#comments">
 										<div class="btn-comment">
 											<span tal:content="string: Comentários(${post/comments})">Coment&aacute;rios (0)</span>
 										</div>
 									</a>
+=======
+									
+									<div class="btn-comment">
+										<span>Coment&aacute;rios (0)</span>
+									</div>
+>>>>>>> 78596eb946233dc113ccd0ed81e9c03ce9e0a7da
 									<div class="subjects" tal:condition="post/subject">
 										<span>Assunto:</span>
 										<tal:repeat repeat="item post/subject">

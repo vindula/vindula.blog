@@ -46,13 +46,13 @@ post_schema = ATFolder.schema.copy() + Schema((
     ),
     
     TextField(
-        name='content',
+        name='content_text',
         required=False,     
         searchable=True,
         widget=RichWidget(
             label="Corpo do texto",
-            label_msgid='vindula.blog_label_number_content',
-            description_msgid='vindula.blog_help_number_content',
+            label_msgid='vindula.blog_label_text_content_text',
+            description_msgid='vindula.blog_help_text_content_text',
             i18n_domain='vindula.blog',
         ),
     ),
