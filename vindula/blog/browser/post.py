@@ -31,29 +31,9 @@ class PostView(BaseView):
 class CommentsPost(CommentsViewlet):
     render = ViewPageTemplateFile("templates/comments.pt")
     
-    def get_comentarios(self, review_state='aprovado', context=None):
-        if not context:
-            context = self.context
-        
-        #if not hasattr(context, 'comentarios'):
-        #    return None
-            
-        #if not context.comentarios:
-        #    return None
-        caminho='/'.join(context.getPhysicalPath())
-        comentarios = context.portal_catalog(portal_type='Comentario',
-                                                  path=caminho,
-                                                  review_state=review_state,
-                                                  sort_on='created')
-        return [ {'UID':comentario.UID,
-                  'ID':comentario.id,
-                  'Titulo':comentario.Title,
-                  'Usuario': comentario.Creator,
-                  'Texto':comentario.Description,
-                  'Data': comentario.created.strftime('%d/%m/%Y - %I:%M'),
-                  'Estado': comentario.review_state,
-                  }
-                 for comentario in comentarios ]
+    def getComments(self):
+        return ManagementCommentsView(self.context, self.context.request).get_comentarios()
+
     
 class ManagementCommentsView(BaseView):
     def addComment(self):  
@@ -101,13 +81,14 @@ class ManagementCommentsView(BaseView):
         comentarios = context.portal_catalog(portal_type='Comentario',
                                                   path=caminho,
                                                   review_state=review_state,
-                                                  sort_on='created')
+                                                  sort_on='created',
+                                                  sort_order='descending',)
         return [ {'UID':comentario.UID,
                   'ID':comentario.id,
                   'Titulo':comentario.Title,
                   'Usuario': comentario.Creator,
                   'Texto':comentario.Description,
-                  'Data': comentario.created.strftime('%d/%m/%Y √†s %I:%M'),
+                  'Data': comentario.created.strftime('%d/%m/%Y - %Hh%M'),
                   'Estado': comentario.review_state,
                   }
                  for comentario in comentarios ]

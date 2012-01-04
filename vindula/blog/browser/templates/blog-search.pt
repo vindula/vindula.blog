@@ -63,9 +63,11 @@
 							</div>
 						</div>
 						<div class="post-bottom">
-							<div class="btn-comment">
-								<span>Coment&aacute;rios (0)</span>
-							</div>
+							<a tal:attributes="href string:${post/url}#comments">
+								<div class="btn-comment">
+									<span tal:content="string: Comentários(${post/comments})">Coment&aacute;rios (0)</span>
+								</div>
+							</a>
 							<div class="subjects" tal:condition="post/subject">
 								<span>Assunto:</span>
 								<tal:repeat repeat="item post/subject">

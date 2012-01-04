@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from vindula.blog.browser.base import BaseView
+from vindula.blog.browser.post import ManagementCommentsView
 
 class BlogView(BaseView):
     
@@ -20,6 +21,7 @@ class BlogView(BaseView):
             L = []
             for post in posts:
                 obj = post.getObject()
+                comments =  ManagementCommentsView(self.context, self.context.request).get_comentarios(context=obj)
                 D = {}
                 D['title'] = obj.Title()
                 D['date'] = self.formatDate(obj.getEffectiveDate())
@@ -28,6 +30,7 @@ class BlogView(BaseView):
                 D['subject'] = obj.Subject()
                 D['url'] = obj.absolute_url()
                 D['image-caption'] = obj.getImageCaption()
+                D['comments'] = len(comments)
                 if obj.getImage():
                     D['image'] = obj.getImage().absolute_url()
                 else:
