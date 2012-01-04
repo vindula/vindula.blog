@@ -2,7 +2,7 @@ $j = jQuery.noConflict();
 
 $j(document).ready(function() {
 	$j('.fancy-comment').fancybox({
-		'autoDimensions':true,
+		'autoDimensions':false,
 		'scrolling': false,
 		'onStart': function() {
 			$j('#fancybox-outer').contents().filter('.fancy-bg').addClass('fancy-laranja-hack');

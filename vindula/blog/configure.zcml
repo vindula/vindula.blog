@@ -17,7 +17,7 @@
   
    <five:registerPackage package="." initialize=".initialize" />
    
-   
+   <subscriber handler=".events.create_banco_imagens" />
   
   <!-- Include the sub-packages that use their own configure.zcml files. -->
   <include package=".browser" />  

@@ -24,8 +24,12 @@ class BlogSearchView(BaseView):
                     D['title'] = obj.Title()
                     D['date'] = self.formatDate(obj.getEffectiveDate())
                     D['signature'] = self.getPostSignature(obj)
-                    D['text'] = self.limitTextSize(600, obj.getContent())
+                    D['text'] = self.limitTextSize(600, obj.getContent_text())
                     D['subject'] = obj.Subject()
                     D['url'] = obj.absolute_url()
                     L.append(D)
                 return L
+            else:
+                return []
+        else:
+            return []    

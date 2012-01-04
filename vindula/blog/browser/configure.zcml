@@ -23,7 +23,7 @@
     	template="templates/blog.pt"
     	class=".blog.BlogView"
     	permission="zope2.View"
-    	allowed_attributes="getPosts getAbaut getAuthors"
+    	allowed_attributes="getPosts getAbaut getAuthors get_termo"
     	/>
 		
   <browser:page

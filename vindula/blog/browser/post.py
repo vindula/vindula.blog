@@ -63,6 +63,8 @@ class CommentsPost(CommentsViewlet):
 class ManagementCommentsView(BaseView):
     def addComment(self):  
         comentario=self.context.request.get('comentario',None)
+        blog = self.context.aq_parent.context
+
         
         if self.context.portal_membership.isAnonymousUser():
             return  'nao autenticado'
@@ -88,8 +90,16 @@ class ManagementCommentsView(BaseView):
         self.context.invokeFactory('Comentario',
                                    id = new_id,
                                    title = title,
-                                   description = comentario,
-                                  )
+                                   description = comentario,)
+        
+        email_moderador = blog.email_moderation()
+        msg = blog.text_email_moderation()
+        assunto = 'Novo Comentario no Blog - Post: ' + self.context.Title()
+        
+        if not msg:
+            msq = "Novo comentario adicionado" 
+        if email_moderador: 
+            self.envia_email(msg, assunto, email_moderador)
 
         return 'ok'
     

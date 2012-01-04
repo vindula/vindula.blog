@@ -23,7 +23,7 @@
                     $j.fancybox({
                         'autoDimensions':false,
                         'content': data,
-                        'scrolling': false,
+                        'scrolling': true,
                         'width': 429,
                         'height': 117,
                         'onClosed': function() { 
@@ -203,13 +203,11 @@
                 <h5 class="font-no-bold text-preto font-size12px">Termo de Uso</h5>
             </div>
             <div class="conteudo-termo padding-left10px padding-bottom10px padding-right10px padding-top10px border-cinza1px margin-top10px">
-                <!--tal:content='structure context/@@comentarios-view/get_termo'>-->
-                <p class="text-preto font-size12px">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar nisi eget elit tincidunt vitae elementum neque hendrerit. 
-                    Donec volutpat augue ac odio pellentesque quis volutpat justo porta. Maecenas vitae ultricies massa. Vestibulum lacinia enim lorem. 
-                    Sed leo nulla, blandit in tristique sit amet, aliquet ut ante. Donec porta varius mauris ac gravida. Fusce vulputate ante at quam semper eget tempor dui accumsan.
-                    Nam dignissim dolor. Maecenas vitae ultricies massa. Vestibulum lacinia enim lorem. Sed leo nulla, blandit in tristique sit amet, aliquet ut ante. Donec porta varius mauris ac gravida. 
-                    Fusce vulputate ante at quam semper eget tempor dui accumsan.</p>
+                <div style="border: 1px solid;height: 150px;overflow-x: auto;padding: 5px;margin:5px;">
+					<p class="text-preto font-size12px" tal:content='structure context/@@blog-view/get_termo'>
+	                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar nisi eget elit tincidunt vitae elementum neque hendrerit. 
+	                    Donec volutpat augue ac odio pellentesque quis volutpat justo porta.</p>
+				</div>
             </div>
 			
             <div id="termo-opcao" class="margin-top10px text-azul-escuro margin-bottom20px font-size12px ">

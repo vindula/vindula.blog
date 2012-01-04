@@ -65,3 +65,9 @@ class BlogView(BaseView):
                     D['text'] = obj.getText()
                     L.append(D)
                 return L
+            
+    def get_termo(self):
+        blog = self.context.aq_parent.context
+        return blog.termo_comentario
+            
+            
