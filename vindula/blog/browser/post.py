@@ -28,6 +28,7 @@ class PostView(BaseView):
             D['portlets'] = blog.getPortlets()
         return D
     
+    
 class CommentsPost(CommentsViewlet):
     render = ViewPageTemplateFile("templates/comments.pt")
     
@@ -54,6 +55,10 @@ class CommentsPost(CommentsViewlet):
                   'Estado': comentario.review_state,
                   }
                  for comentario in comentarios ]
+    
+    def getDescriptionComments(self):
+        blog = self.context.aq_parent.context
+        return blog.description_coments
     
 class ManagementCommentsView(BaseView):
     def addComment(self):  

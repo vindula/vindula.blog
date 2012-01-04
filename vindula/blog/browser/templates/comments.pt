@@ -23,8 +23,8 @@
 		</div>
 		
 		<div class="description-comments">
-			<span>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor semper ultricies. Pellentesque vel magna felis, sollicitudin facilisis massa. Fusce in congue nisl.
+			<span tal:content="structure view/getDescriptionComments|nothing">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor semper ultricies.
 			</span>		
 		</div>
 		
