@@ -78,9 +78,7 @@
 						<span class="date-color"> - </span>
 	                    <span tal:content="fullname"
 	                          tal:condition="not:anonymous_creator">Poster Name</span>
-	                    <span i18n:translate="label_anonymous_user"
-	                          tal:condition="anonymous_creator">Anonymous User</span>
-	                    <span>(matricula)</span> 
+	                    <span tal:content="string: (${creator})">(matricula)</span> 
 	                </div>
 	                <div class="commentBody"
 	                     tal:content="structure reply/Texto">

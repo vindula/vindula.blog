@@ -6,7 +6,8 @@
 			<!-- Title -->
 			<div id="blog-top-title">
 				<div id="title">
-					<span tal:content="blog/title|nothing"></span>
+					<a href="" tal:attributes="href context/absolute_url" tal:content="blog/title|nothing">
+					</a>
 				</div>
 				<div id="img">
 					<a tal:attributes="href blog/url|nothing">
