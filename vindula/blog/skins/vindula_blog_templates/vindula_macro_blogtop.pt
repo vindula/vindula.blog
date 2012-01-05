@@ -19,7 +19,7 @@
 			<!-- Menu -->
 			<div id="blog-top-menu">
 				<ul tal:condition="python: not (blog['menu_initial'] == False and blog['menu_abaut'] == False and blog['menu_authors'] == False)">
-					<a tal:attributes="href context/absolute_url|nothing" tal:condition="python:context.portal_type=='Blog'">
+					<a class="notUnderline" tal:attributes="href context/absolute_url|nothing" tal:condition="python:context.portal_type=='Blog'">
 						<li id="initial" tal:condition="blog/menu_initial|nothing">In&iacute;cio</li></a>
 					<tal:cond condition="python: context.portal_type!='Blog'">
 						<li id="initial" tal:condition="blog/menu_initial|nothing">In&iacute;cio</li>	

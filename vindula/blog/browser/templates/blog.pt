@@ -61,7 +61,7 @@
 									<div class="post-text" tal:content="structure post/text"></div>
 								</div>
 								<div class="post-bottom">
-									<a tal:attributes="href string:${post/url}#comments">
+									<a class="notUnderline" tal:attributes="href string:${post/url}#comments">
 										<div class="btn-comment">
 											<span tal:content="string: Comentários(${post/comments})">Coment&aacute;rios (0)</span>
 										</div>
