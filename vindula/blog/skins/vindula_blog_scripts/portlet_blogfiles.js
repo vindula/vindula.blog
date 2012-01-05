@@ -9,8 +9,9 @@ $j(document).ready(function(){
 	
 	var height = 0;
 	$j("#files div").each(function() {
-		if ($j(this).height() > height)
-    		height = $j(this).height()
+		if ($j(this).height() > height) {
+			height = $j(this).height();
+		};
 		height = height + 10;
 	});
 
@@ -23,7 +24,7 @@ $j(document).ready(function(){
 		pager:  '#cycle-nav',
 		height: height,
 		speed: 	100,
-		timeout: 0,
+		timeout: 0
 	});
 
 	$j('#blogfiles li a').click(function() {	
