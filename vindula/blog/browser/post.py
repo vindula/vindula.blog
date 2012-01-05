@@ -30,7 +30,7 @@ class PostView(BaseView):
     
     
 class CommentsPost(CommentsViewlet):
-    render = ViewPageTemplateFile("templates/comments.pt")
+    render = ViewPageTemplateFile("templates/comments_blog.pt")
     
     def getComments(self):
         return ManagementCommentsView(self.context, self.context.request).get_comentarios()
@@ -70,11 +70,8 @@ class ManagementCommentsView(BaseView):
         
         if hasattr(self.context, new_id):
             new_id = self.context.generateUniqueId(new_id)
-        
-        self.context.invokeFactory('Comentario',
-                                   id = new_id,
-                                   title = title,
-                                   description = comentario,)
+
+        self.context.create_new_comment(new_id = new_id, title = title, comentario = comentario)
         
         email_moderador = blog.email_moderation()
         msg = blog.text_email_moderation()

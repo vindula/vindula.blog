@@ -227,11 +227,12 @@
                         <textarea id='comentario_field' name='comentario' maxlength="500" tal:attributes='maxlength context/tamanho_comentario|string:500'
                                   tal:content='context/@@comentarios-view/get_texto_comentario'>
                         </textarea>
-                        <div>
+						<!--Caracteres-->
+                        <!--div>
                             <span id="charcount">0</span>
                             /
                             <span tal:content='context/tamanho_comentario|string:500'>500</span>
-                        </div>
+                        </div-->
                     </form>
                 </div>
             </div>
@@ -245,6 +246,7 @@
                         style="display:none" alt=" " />
                 </a>
             </div>
+			<div class="visualClear"></div>
         </div>
     </div>	
 </body>
