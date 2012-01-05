@@ -53,3 +53,13 @@ class MacrosView(BaseView):
                 files.reverse()
                 return {'blog':blog.absolute_url(), 
                         'files': files}
+                
+                
+    def getURLBlog(self):
+        ctx = self.context
+        while ctx.portal_type != 'Blog':
+            ctx = ctx.aq_inner.aq_parent
+        return ctx.absolute_url()
+        
+        
+        

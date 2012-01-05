@@ -17,15 +17,26 @@
 			
 			<!-- Menu -->
 			<div id="blog-top-menu">
-				<ul tal:condition="python: not (blog['menu_initial'] == False and blog['menu_abaut'] == False and blog['menu_authors'] == False)">
-					<a tal:attributes="href context/absolute_url|nothing" tal:condition="python:context.portal_type=='Blog'">
-						<li id="initial" tal:condition="blog/menu_initial|nothing">In&iacute;cio</li></a>
-					<tal:cond condition="python: context.portal_type!='Blog'">
+				<tal:cond condition="python:context.portal_type=='Blog' or context.portal_type=='Post'">
+					<ul tal:condition="python: not (blog['menu_initial'] == False and blog['menu_abaut'] == False and blog['menu_authors'] == False)">
 						<li id="initial" tal:condition="blog/menu_initial|nothing">In&iacute;cio</li>	
-					</tal:cond>
-					<li id="abaut" tal:condition="blog/menu_abaut|nothing">Sobre o Blog</li>
-					<li id="authors" tal:condition="blog/menu_authors|nothing">Autores</li>
-				</ul>
+						<li id="abaut" tal:condition="blog/menu_abaut|nothing">Sobre o Blog</li>
+						<li id="authors" tal:condition="blog/menu_authors|nothing">Autores</li>
+					</ul>
+				</tal:cond>
+				<tal:cond condition="python:context.portal_type!='Blog' and context.portal_type!='Post'">
+					<ul tal:condition="python: not (blog['menu_initial'] == False and blog['menu_abaut'] == False and blog['menu_authors'] == False)">
+						<li id="initial" tal:condition="blog/menu_initial|nothing">
+							<a tal:attributes="href string:${view/getURLBlog|nothing}#inicial">In&iacute;cio</a>
+						</li>
+						<li id="abaut" tal:condition="blog/menu_abaut|nothing">
+							<a tal:attributes="href string:${view/getURLBlog|nothing}#abaut">Sobre o Blog</a>
+						</li>
+						<li id="authors" tal:condition="blog/menu_authors|nothing">
+							<a tal:attributes="href string:${view/getURLBlog|nothing}#authors">Autores</a>
+						</li>
+					</ul>
+				</tal:cond>
 			</div>
 		</tal:define>
 </metal:macro>
