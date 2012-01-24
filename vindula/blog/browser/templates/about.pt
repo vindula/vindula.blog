@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="vindula.blog">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+
+    <body>
+        <metal:main fill-slot="main">
+            <div class="blog" tal:define="abaut view/getAbaut | nothing">
+
+                <!-- Portlets -->
+                <div class="portlets-area" tal:condition="context/portlets">
+                    <tal:define define="global define_area string: blog-area" />
+                    <tal:block replace="structure provider:plone.rightcolumn" />
+                </div>
+
+                <div tal:attributes="class define_area | nothing">
+                    <!-- Abaut -->
+                    <div id="blog-abaut">
+                        <tal:condition condition="not: abaut/text">
+                            <span>O texto de apresenta&ccedil;&atilde;o do blog n&atilde;o foi encontrado.</span>
+                            <a tal:attributes="href string: ${context/absolute_url}/edit">Adicione uma apresenta&ccedil;&atilde;o.</a>
+                        </tal:condition>
+                        <div class="contents" tal:condition="abaut/text">
+                            <h1 class="post-title" tal:content="abaut/title"></h1>
+                            <span class="date" tal:content="abaut/date"></span>
+                            <span class="signature" tal:content="string: / ${abaut/signature}"
+                                                    tal:condition="abaut/signature"></span>
+                            <div class="post-text" tal:content="structure abaut/text"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div metal:use-macro="context/vindula_macro_blogfooter/macros/blogfooter"></div>
+
+            </div>
+        </metal:main>
+    </body>
+</html>
