@@ -3,7 +3,9 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <script type="text/javascript">
     	$j = jQuery.noConflict();
-
+	
+	$j.fancybox.resize();
+	
         function inserir_comentario(ficar_logado){
             $j.ajax({
                 type    : "POST",
@@ -109,6 +111,16 @@
         };
         
         $j(document).ready(function(){
+            var comment_maxlength = parseInt($j('textarea#comentario_field').attr('maxlength'));
+            $j('textarea#comentario_field').keyup(function(){
+		var comment_field = $j(this);
+ 		var length = comment_field.attr('value').length;
+		if (length >= comment_maxlength){
+			console.debug(length);
+			comment_field.attr('value', comment_field.attr('value').substring(0, comment_maxlength));
+		}
+		$j('span#char_counter').html(comment_field.attr('value').length);
+	    });
             change_fields(false);
             change_button(false);
             //$j('#comentario_field').limitMaxlength({'onEdit':update_counter});
@@ -222,6 +234,11 @@
                 <div class="informacoes-termo margin-bottom10px margin-top20px">
                     <div class="margin-bottom10px">
                         <p id='comentario_head' class="text-preto font-size12px margin-bottom10px">Comentário</p>
+                        <p>
+			 	<span id="char_counter">0</span>
+			  	/
+			  	<span tal:content="context/tamanho_comentario|string:500"/>
+			</p>
                     </div>
                     <form id='comentario_form'>
                         <textarea id='comentario_field' name='comentario' maxlength="500" tal:attributes='maxlength context/tamanho_comentario|string:500'
@@ -241,8 +258,8 @@
             </div>
             <div id="bt-confirmar" class="float-right">
                 <a href="#" id='submit'>
-                    <img id='btnOn' src="http://www.arquivo.novaintranet.caixa/imagens/bt_confirmar.jpg" alt=" " />
-                    <img id='btnOff' src="http://www.arquivo.novaintranet.caixa/imagens/bt_confirmar_off.jpg" 
+                    <img id='btnOn' src="http://arquivo.intranet.caixa/imagens970/bt_confirmar.jpg" alt=" " />
+                    <img id='btnOff' src="http://arquivo.intranet.caixa/imagens970/bt_confirmar_off.jpg" 
                         style="display:none" alt=" " />
                 </a>
             </div>

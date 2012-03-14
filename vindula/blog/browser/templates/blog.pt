@@ -8,17 +8,13 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <metal:js fill-slot="javascript_head_slot">
-            <script type="text/javascript" tal:attributes="src string: ${context/portal_url}/menu_blog.js"></script>
-        </metal:js>    	
 	</head>
 	
 	<body>
-		<metal:main fill-slot="main">
-			<div class="blog" tal:define="posts view/getPosts | nothing;
-			                              abaut view/getAbaut | nothing;
-										  authors view/getAuthors | nothing;
-										  Batch python:modules['Products.CMFPlone'].Batch;
+		<metal:main fill-slot="main">            
+
+            <div class="blog" tal:define="posts view/getPosts | nothing;
+			                              Batch python:modules['Products.CMFPlone'].Batch;
 								          b_size python:int(context.getNumber_posts());
 								          b_start python:0;
 								          b_start request/b_start | b_start">
@@ -30,7 +26,7 @@
 				</div>
 				
 				<div tal:attributes="class define_area | nothing">
-				
+
 					<!-- Initial -->
 					<div id="blog-initial">
 						<tal:condition condition="not: posts">
@@ -89,39 +85,6 @@
 						
 						</tal:condition>
 					</div>
-					
-					<!-- Abaut -->
-					<div id="blog-abaut">
-						<tal:condition condition="not: abaut/text">
-							<span>O texto de apresenta&ccedil;&atilde;o do blog n&atilde;o foi encontrado.</span>
-							<a tal:attributes="href string: ${context/absolute_url}/edit">Adicione uma apresenta&ccedil;&atilde;o.</a>
-						</tal:condition>
-						<div class="contents" tal:condition="abaut/text">
-							<h1 class="post-title" tal:content="abaut/title"></h1>
-							<span class="date" tal:content="abaut/date"></span>
-							<span class="signature" tal:content="string: / ${abaut/signature}"
-							                        tal:condition="abaut/signature"></span>
-							<div class="post-text" tal:content="structure abaut/text"></div>
-						</div>
-					</div>
-					
-					<!-- Authors -->
-					<div id="blog-authors">
-						<tal:condition condition="not: authors">
-							<span>N&atilde;o h&aacute; autores cadastrados neste blog.</span>
-							<a tal:attributes="href string: ${context/absolute_url}/createObject?type_name=Author">Adicione um autor.</a>
-						</tal:condition>
-						<div tal:repeat="author authors" tal:condition="authors">
-							<div class="contents">
-								<h1 class="post-title" tal:content="author/title"></h1>
-								<span class="date" tal:content="author/date"></span>
-								<span class="signature" tal:content="string: / ${author/signature}"
-								                        tal:condition="author/signature"></span>
-								<div class="post-text" tal:content="structure author/text"></div>
-							</div>
-						</div>
-					</div>
-				
 				</div>
 				
 				<!-- Footer -->

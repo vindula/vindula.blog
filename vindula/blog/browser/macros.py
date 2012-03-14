@@ -26,16 +26,23 @@ class MacrosView(BaseView):
         if context:
             if context.getFooter():
                 return context.getFooter()
-        
+
+    def _get_posts_in_folder(self, folder):
+        return self.context.portal_catalog(
+            portal_type='Post', 
+            review_state='published',
+            path='/'.join(folder.getPhysicalPath()),
+        )
+ 
         
     def getBlogFiles(self):
         # Returns a list of the folders on the blog
         blog = self.getBlogContext()
-        if blog:
+        files = []
+        if blog and hasattr(blog, 'posts'):
             folder_posts = blog.get('posts')
             years = folder_posts.objectValues()
             if years:
-                files = []
                 for year in years:
                     months = year.objectValues()
                     if months:
@@ -44,18 +51,23 @@ class MacrosView(BaseView):
                             D = {}
                             D['name'] = month.Title().title()
                             D['number'] = month.getId()
-                            D['posts'] = len(month.objectValues())
+                            D['posts'] = len(self._get_posts_in_folder(month))
+                            D['link'] = month.absolute_url()
                             if D['posts'] > 0:
                                 L.append(D)
                         if L != []:
                             files.append({'year': year.Title(), 
                                           'months': L})
                 files.reverse()
-                return {'blog':blog.absolute_url(), 
-                        'files': files}
+                
+        return {'blog':blog.absolute_url(), 
+                'files': files}
                 
                 
     def getURLBlog(self):
+        #import pdb
+        #pdb.set_trace()
+        blog = self.getBlogContext()
         ctx = self.context
         while ctx.portal_type != 'Blog':
             ctx = ctx.aq_inner.aq_parent

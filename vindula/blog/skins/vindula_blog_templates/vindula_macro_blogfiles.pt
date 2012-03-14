@@ -1,6 +1,6 @@
 <metal:macro metal:define-macro="blogfiles">
-	<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/portlet_blogfiles.js"></script>
-	<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/cycle.js"></script>
+	<script type="text/javascript" src="http://arquivo.intranet.caixa/js970/portlet_blogfiles.js"></script>
+	<script type="text/javascript" src="http://arquivo.intranet.caixa/js970/cycle.js"></script>
 		
 		
 	<tal:define define="view python:context.restrictedTraverse('@@blog-macros');
@@ -22,7 +22,7 @@
 					<span tal:content="file/year"></span>
 					<ul>
 						<li tal:repeat="month file/months">
-							<a tal:content="string: ${month/name} (${month/posts})" tal:attributes="id month/number"></a>
+							<a tal:content="string: ${month/name} (${month/posts})" href="#" tal:attributes="id month/number; href string: ${month/link}/blog-view"></a>
 						</li>
 					</ul>
 				</div>	

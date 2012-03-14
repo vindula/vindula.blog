@@ -16,10 +16,25 @@
   <!-- -*- extra stuff goes here -*- -->
   
    <five:registerPackage package="." initialize=".initialize" />
-   
-   <subscriber handler=".events.create_banco_imagens" />
-   <subscriber handler=".events.set_compartilhamento" />
-  
+
+   <subscriber
+      for="vindula.blog.content.interfaces.IBlog
+           Products.Archetypes.interfaces.IObjectInitializedEvent"
+      handler=".events.create_folder_structure"
+      />
+
+   <subscriber
+      for="vindula.blog.content.interfaces.IPost
+           Products.Archetypes.interfaces.IObjectInitializedEvent"
+      handler=".events.organize_object"
+      />
+
+   <subscriber
+      for="vindula.blog.content.interfaces.IAuthor
+           Products.Archetypes.interfaces.IObjectInitializedEvent"
+      handler=".events.organize_object"
+      />
+
   <!-- Include the sub-packages that use their own configure.zcml files. -->
   <include package=".browser" />  
   <include package=".portlets" />

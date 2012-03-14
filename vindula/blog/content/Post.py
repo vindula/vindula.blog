@@ -76,4 +76,7 @@ class Post(ATFolder):
     _at_rename_after_creation = True
     schema = post_schema
 
+
+
+
 registerType(Post, PROJECTNAME)          

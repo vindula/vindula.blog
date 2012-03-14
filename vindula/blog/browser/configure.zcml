@@ -25,6 +25,24 @@
     	permission="zope2.View"
     	allowed_attributes="getPosts getAbaut getAuthors get_termo"
     	/>
+
+  <browser:page
+        for="*"
+        name="about-view"
+        template="templates/about.pt"
+        class=".blog.BlogView"
+        permission="zope2.View"
+        allowed_attributes="getAbaut get_termo"
+        />
+
+  <browser:page
+        for="*"
+        name="autores-view"
+        template="templates/autores.pt"
+        class=".blog.BlogView"
+        permission="zope2.View"
+        allowed_attributes="getAuthors get_termo"
+        />
 		
   <browser:page
   		for="*"

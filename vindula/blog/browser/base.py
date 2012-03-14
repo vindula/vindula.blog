@@ -80,7 +80,6 @@ class BaseView(BrowserView):
         else:
             return text
         
-        
     def envia_email(self, msg, assunto, mail_para):
         """Retirado do LiberiunNews
 

@@ -160,3 +160,41 @@ class ManagementCommentsView(BaseView):
                 if 'reprovar' in transition_ids:
                     self.context.portal_workflow.doActionFor(comentario, 'reprovar')
                     usuarios_reprovados.append(comentario.Creator())
+
+
+        def getEmail_usuario(user_name):
+            email = user_name+'@caixa.gov.br'
+            user_data = self.context.restrictedTraverse('@@pas_search').searchUsers(login=user_name)
+            if user_data:
+                user_data = user_data[0]
+                if user_data.has_key('mail'):
+                    email= user_data['mail']
+                elif user_data.has_key('email'):
+                    email= user_data['email']
+                elif user_data.has_key('e-mail'):
+                    email= user_data['e-mail']
+            return email
+
+        email_remetente = self.context.email_moderation() or getattr(self.context, 'email_caixa', 'example@example.com')
+        if form.get('enviar_aprovados') == '1':
+            for usuario in usuarios_aprovados:
+                userEmail = getEmail_usuario(usuario)
+                if userEmail:
+                    print 'Sent Email aprovado:', userEmail, usuario
+                    mail = 'O seu comentário no post "%s" foi aprovado. \n %s \n Mensagem do gestor:\n%s' %(self.context.Title(), self.context.absolute_url(), form.get('mensagem_aprovados'))
+                    self.context.MailHost.send(mail.encode('latin1'),
+                                               userEmail,
+                                               email_remetente,
+                                               u'[Blog Caixa] Comentário Aprovado'.encode('latin1'))
+
+        if form.get('enviar_reprovados') == '1':
+            for usuario in usuarios_reprovados:
+                userEmail = getEmail_usuario(usuario)
+                if userEmail:
+                    print 'Sent Email reprovado:', userEmail, usuario
+                    mail = 'O seu comentário no post "%s" foi aprovado. \n %s \n Mensagem do gestor:\n%s' %(self.context.Title(), self.context.absolute_url(), form.get('mensagem_aprovados'))
+                    self.context.MailHost.send(mail.encode('latin1'),
+                                               userEmail,
+                                               email_remetente, 
+                                               u'[Blog Caixa] Comentário Reprovado'.encode('latin1'))
+

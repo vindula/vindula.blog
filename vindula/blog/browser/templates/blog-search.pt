@@ -9,8 +9,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <metal:js fill-slot="javascript_head_slot">
-        	<script type="text/javascript" tal:attributes="src string: ${context/portal_url}/vindula_blog.js"></script>
-            <script type="text/javascript" tal:attributes="src string: ${context/portal_url}/menu_blog.js"></script>
+        	<script type="text/javascript" src="http://arquivo.intranet.caixa/js970/vindula_blog.js"></script>
+            <script type="text/javascript" src="http://arquivo.intranet.caixa/js970/menu_blog.js"></script>
         </metal:js>    	
 	</head>
 	

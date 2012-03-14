@@ -1,14 +1,22 @@
 <metal:macro metal:define-macro="blogtop">	
 		<tal:define define="view python:context.restrictedTraverse('@@blog-macros');
-		                 blog view/getBlogTop | nothing"
+                            blog view/getBlogTop | nothing;
+                            blog_url view/getURLBlog"
 			 tal:condition="blog">
 			 	
 			<!-- Title -->
 			<div id="blog-top-title">
-				<div id="title">
-					<a href="" tal:attributes="href context/absolute_url" tal:content="blog/title|nothing">
-					</a>
-				</div>
+                <div id="title">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <a tal:attributes="href blog_url" tal:content="blog/title|nothing">Blog Caixa teste 01 Lorem Ipsum sit</a>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 				<div id="img">
 					<a tal:attributes="href blog/url|nothing">
 					<img tal:attributes="src blog/image|nothing" tal:condition="blog/image|nothing">
@@ -18,26 +26,31 @@
 			
 			<!-- Menu -->
 			<div id="blog-top-menu">
-				<tal:cond condition="python:context.portal_type=='Blog' or context.portal_type=='Post'">
-					<ul tal:condition="python: not (blog['menu_initial'] == False and blog['menu_abaut'] == False and blog['menu_authors'] == False)">
-						<li id="initial" tal:condition="blog/menu_initial|nothing">In&iacute;cio</li>	
-						<li id="abaut" tal:condition="blog/menu_abaut|nothing">Sobre o Blog</li>
-						<li id="authors" tal:condition="blog/menu_authors|nothing">Autores</li>
-					</ul>
-				</tal:cond>
-				<tal:cond condition="python:context.portal_type!='Blog' and context.portal_type!='Post'">
-					<ul tal:condition="python: not (blog['menu_initial'] == False and blog['menu_abaut'] == False and blog['menu_authors'] == False)">
-						<li id="initial" tal:condition="blog/menu_initial|nothing">
-							<a tal:attributes="href string:${view/getURLBlog|nothing}#inicial">In&iacute;cio</a>
-						</li>
-						<li id="abaut" tal:condition="blog/menu_abaut|nothing">
-							<a tal:attributes="href string:${view/getURLBlog|nothing}#abaut">Sobre o Blog</a>
-						</li>
-						<li id="authors" tal:condition="blog/menu_authors|nothing">
-							<a tal:attributes="href string:${view/getURLBlog|nothing}#authors">Autores</a>
-						</li>
-					</ul>
-				</tal:cond>
+                <ul tal:define="context_type context/Type;
+                                template_name python:request.URL.split('/')[-1];
+                                menu_name python:{'blog-view':'inicio', 'about-view':'about', 'autores-view':'autores'}.get(template_name, 'inicio')">
+                    <li id="initial"
+                        tal:condition="blog/menu_initial|nothing"
+                        tal:attributes="class python:context_type == 'Blog' and (menu_name == 'inicio' and 'active' or '')">
+                        <a tal:attributes="href blog_url">
+                            In&iacute;cio
+                        </a>
+                    </li>
+                    <li id="abaut"
+                        tal:condition="blog/menu_abaut|nothing"
+                        tal:attributes="class python:context_type == 'Blog' and (menu_name == 'about' and 'active' or '')">
+                        <a tal:attributes="href string:${blog_url}/about-view">
+                            Sobre o Blog
+                        </a>
+                    </li>
+                    <li id="authors"
+                        tal:condition="blog/menu_authors|nothing"
+                        tal:attributes="class python:context_type == 'Blog' and (menu_name == 'autores' and 'active' or '')">
+                        <a tal:attributes="href string:${blog_url}/autores-view">
+                            Autores
+                        </a>
+                    </li>
+                </ul>
 			</div>
 		</tal:define>
 </metal:macro>
