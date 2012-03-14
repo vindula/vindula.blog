@@ -73,7 +73,7 @@
 								</div>
 							</div>
 							
-							<!-- Search Subject -->
+							<!-- Search Subject -->							
 							<form id="search-subject" method="post" action="blog-search">
 								<input type="hidden" name="search-subject" value="">
 							</form>

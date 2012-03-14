@@ -202,8 +202,23 @@
         });
     </script>
 
+    <link rel="stylesheet" href="http://arquivo.intranet.caixa/css/internas_lib.css" type="text/css">
+    <link rel="stylesheet" href="http://arquivo.intranet.caixa/css/comentario.css" type="text/css">
+    <script type="text/javascript" src="http://arquivo.intranet.caixa/js970/resize_fancy.js"></script>
+    
 </head>
 <body>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            parent.resize('width','left',800);
+            parent.resize('height','top',600);
+            parent.$.fancybox.hideActivity();
+        });
+        
+        fancybox({'autoDimensions' : false,
+                                'width': 450,
+                                'height': 500,
+    </script>
     <div id="geral-cadastro">
         <div class="visual-clear"></div>
         <div id="controle-conteudo">

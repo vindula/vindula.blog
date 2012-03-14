@@ -16,11 +16,17 @@
         </metal:js>
 		
 		<metal:styleslot fill-slot="style_slot">
-    		<link rel="stylesheet" href="http://arquivo.intranet.caixa/css970/fancybox-caixa.css" type="text/css">
+    		<link rel="stylesheet" href="http://arquivo.intranet.caixa/css/fancybox-caixa.css" type="text/css">
 		</metal:styleslot>		
 	</head>
 	
 	<body>
+//         <script type="text/javascript">
+//             $("#fancy-comment").fancybox({'autoDimensions' : false,
+//                                     'width': 450,
+//                                     'height': 500,
+//                                  });
+//         </script>
 		<metal:main fill-slot="main">
 	 		<div class="blog" tal:define="post view/getPost">
 				
@@ -60,7 +66,7 @@
 							</tal:repeat>
 						</div>
 						
-						<div tal:replace="structure provider:plone.belowcontent" />
+						<div tal:replace="structure provider:plone.belowcontent"/>
 					</div>
 					
 					<!-- Search Subject -->
