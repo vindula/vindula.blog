@@ -1,12 +1,30 @@
 <?xml version="1.0"?>
 <portlets xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone">
-    	
+
 	<portlet addview="vindula.blog.PortletBlogFiles"
 			 title="Portlet Arquivos do Blog"
-			 description="Lista as pastas do blog, indicando a quantidade de posts em cada uma." />		
+			 description="Lista as pastas do blog, indicando a quantidade de posts em cada uma." />
 			 
 	<portlet addview="vindula.blog.PortletBlogSearch"
 			 title="Portlet Busca no Blog"
-			 description="Portlet com um campo de busca por posts em todo o blog." />
-			 
+			 description="Portlet com um campo de busca por posts em todo o blog." 
+             />        
+             
+   <assignment
+        category="content_type"
+        key="Blog"
+        manager="plone.rightcolumn"
+        name="Portlet Busca Blog"
+        type="vindula.blog.PortletBlogSearch"
+        insert-before="*"
+        />
+        
+    <assignment
+        category="content_type"
+        key="Blog"
+        manager="plone.rightcolumn"
+        name="Portlet Arquivos do Blog"
+        type="vindula.blog.PortletBlogFiles"
+        />
+        
 </portlets>
