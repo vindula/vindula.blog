@@ -1,0 +1,14 @@
+<tal:naotemporario tal:condition="not:context/isTemporary">
+    <dl class="portlet">
+        <dt class="portletHeader" id="cycle-blogfiles" >
+        <span>ACOMPANHE O BLOG<span/>
+        </dt>
+        <dd class="portletItem rssBody">
+            <a tal:attributes="href string:${context/absolute_url}/feeds/RSS" >
+                <img class="portletRssIcone" alt="Acompanhe o Blog" src="http://arquivo.intranet.caixa/imagens/ico_blog_rss.png" />
+            </a>
+            <a class="portletRssLink" tal:attributes="href string:${context/absolute_url}/feeds/RSS">
+            Assine nosso RSS para receber em seu email nossas atividades</a>
+        </dd >
+    </dl>
+</tal:naotemporario>
