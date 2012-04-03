@@ -29,12 +29,6 @@
       handler=".events.organize_object"
       />
 
-   <subscriber
-      for="vindula.blog.content.interfaces.IAuthor
-           Products.Archetypes.interfaces.IObjectInitializedEvent"
-      handler=".events.organize_object"
-      />
-
   <!-- Include the sub-packages that use their own configure.zcml files. -->
   <include package=".browser" />  
   <include package=".portlets" />

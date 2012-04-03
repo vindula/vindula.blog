@@ -26,5 +26,16 @@
 		 renderer=".portlet_blogsearch.Renderer"
 		 addview=".portlet_blogsearch.AddForm"
 	 	/>
+    
+    <!--Portlet Blog Rss -->
+    <plone:portlet
+         name="vindula.blog.PortletBlogRss"
+         interface=".portlet_blogrss.IPortletBlogRss"
+         assignment=".portlet_blogrss.Assignment"
+         view_permission="zope2.View"
+         edit_permission="cmf.ManagePortal"
+         renderer=".portlet_blogrss.Renderer"
+         addview=".portlet_blogrss.AddForm"
+         />
 
 </configure>

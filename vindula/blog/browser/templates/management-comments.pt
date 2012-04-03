@@ -8,12 +8,12 @@
 
 	<head>
 		<metal:css fill-slot="style_slot">
-			<style type="text/css">@import "http://arquivo.intranet.caixa/css970/internas_lib.css";</style>
-			<style type="text/css">@import "http://arquivo.intranet.caixa/css970/cabecalho_jornal.css";</style>
-			<style type="text/css">@import "http://arquivo.intranet.caixa/css970/atualidade.css";</style>
-			<style type="text/css">@import "http://arquivo.intranet.caixa/css970/fancy-atualidade.css";</style>
-			<style type="text/css">@import "http://arquivo.intranet.caixa/css970/caixa_pelo_pais.css";</style>
-	        <style type="text/css">@import "http://arquivo.intranet.caixa/css970/comentarios.css";</style>
+			<style type="text/css">@import "http://arquivo.intranet.caixa/css/internas_lib.css";</style>
+			<style type="text/css">@import "http://arquivo.intranet.caixa/css/cabecalho_jornal.css";</style>
+			<style type="text/css">@import "http://arquivo.intranet.caixa/css/atualidade.css";</style>
+			<style type="text/css">@import "http://arquivo.intranet.caixa/css/fancy-atualidade.css";</style>
+			<style type="text/css">@import "http://arquivo.intranet.caixa/css/caixa_pelo_pais.css";</style>
+	        <style type="text/css">@import "http://arquivo.intranet.caixa/css/comentarios.css";</style>
 		</metal:css>
         <metal:js fill-slot="javascript_head_slot">
         	<script type="text/javascript" src="http://arquivo.intranet.caixa/js970/comentarios_blog.js"></script>
@@ -63,7 +63,7 @@
 	                                            <div class="bt-aplicar float-right margin-right11px">
 	                                                <input type="hidden" name="form.submitted" value="1" />
 	                                                <a href="javascript:;" id="btn_aplicar">
-	                                                    <img alt="" src="http://arquivo.intranet.caixa/imagens970/bt_aplicar_fundo_cinza.jpg">
+	                                                    <img alt="" src="http://arquivo.intranet.caixa/imagens/bt_aplicar_fundo_cinza.jpg">
 	                                                </a>
 	                                            </div> 
 	                                        </div>

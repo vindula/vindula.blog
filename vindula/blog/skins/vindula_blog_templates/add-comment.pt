@@ -29,7 +29,7 @@
                         'width': 429,
                         'height': 117,
                         'onClosed': function() { 
-                                        $j('#fancybox-outer').contents().filter('.fancy-bg').removeClass('fancy-laranja-hack'); 
+                                        $j('#fancybox-outer').contents().filter('.fancybox-bg').removeClass('fancy-laranja-hack'); 
                                         if ($j.browser.msie) {
                                             $j('#banner').show();
                                         }
@@ -201,27 +201,13 @@
 
         });
     </script>
-
-    <link rel="stylesheet" href="http://arquivo.intranet.caixa/css/internas_lib.css" type="text/css">
-    <link rel="stylesheet" href="http://arquivo.intranet.caixa/css/comentario.css" type="text/css">
-    <script type="text/javascript" src="http://arquivo.intranet.caixa/js970/resize_fancy.js"></script>
+    <style type="text/css">@import "http://arquivo.intranet.caixa/css/internas_lib.css";</style>
     
 </head>
 <body>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            parent.resize('width','left',800);
-            parent.resize('height','top',600);
-            parent.$.fancybox.hideActivity();
-        });
-        
-        fancybox({'autoDimensions' : false,
-                                'width': 450,
-                                'height': 500,
-    </script>
     <div id="geral-cadastro">
         <div class="visual-clear"></div>
-        <div id="controle-conteudo">
+        <div id="controle-conteudo" >
             <div class="border-bottom-laranja margin-bottom10px" id="classificado">
                 <h4 class="no-border font-bold font-size14px text-laranja text-up margin-bottom120px">Comente</h4>
             </div>
@@ -230,7 +216,7 @@
                 <h5 class="font-no-bold text-preto font-size12px">Termo de Uso</h5>
             </div>
             <div class="conteudo-termo padding-left10px padding-bottom10px padding-right10px padding-top10px border-cinza1px margin-top10px">
-                <div style="border: 1px solid;height: 150px;overflow-x: auto;padding: 5px;margin:5px;">
+                <div style="">
 					<p class="text-preto font-size12px" tal:content='structure context/@@blog-view/get_termo'>
 	                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar nisi eget elit tincidunt vitae elementum neque hendrerit. 
 	                    Donec volutpat augue ac odio pellentesque quis volutpat justo porta.</p>

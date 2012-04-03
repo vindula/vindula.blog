@@ -1,3 +1,5 @@
-<dl metal:define-macro="portlet" class="portlet portletBlogSearch">
-	<div metal:use-macro="context/vindula_macro_blogsearch/macros/blogsearch"></div>
-</dl>
+<tal:naotemporario tal:condition="not:context/isTemporary">
+    <dl metal:define-macro="portlet" class="portlet portletBlogSearch">
+        <div metal:use-macro="context/vindula_macro_blogsearch/macros/blogsearch"></div>
+    </dl>
+</tal:naotemporario>

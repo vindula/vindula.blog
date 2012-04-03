@@ -98,7 +98,7 @@ class ManagementCommentsView(BaseView):
                                                   path=caminho,
                                                   review_state=review_state,
                                                   sort_on='created',
-                                                  sort_order='descending',)
+                                                  sort_order='ascending',)
         return [ {'UID':comentario.UID,
                   'ID':comentario.id,
                   'Titulo':comentario.Title,

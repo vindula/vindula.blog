@@ -9,8 +9,13 @@
 			 title="Portlet Busca no Blog"
 			 description="Portlet com um campo de busca por posts em todo o blog." 
              />        
+    
+    <portlet addview="vindula.blog.PortletBlogRss"
+             title="Portlet RSS no Blog"
+             description="Portlet específico para acompanhar as notícias postadas no blog."
+             />
              
-   <assignment
+    <assignment
         category="content_type"
         key="Blog"
         manager="plone.rightcolumn"
@@ -25,6 +30,16 @@
         manager="plone.rightcolumn"
         name="Portlet Arquivos do Blog"
         type="vindula.blog.PortletBlogFiles"
+        insert-before="vindula.blog.PortletBlogRss"
+        />
+        
+    <assignment
+        category="content_type"
+        key="Blog"
+        manager="plone.rightcolumn"
+        name="Portlet RSS no Blog"
+        type="vindula.blog.PortletBlogRss"
+        insert-after="vindula.blog.PortletBlogFiles"
         />
         
 </portlets>

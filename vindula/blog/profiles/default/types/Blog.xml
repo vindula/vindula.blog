@@ -16,6 +16,7 @@
    <element value="Folder"/>
    <element value="Post"/>
    <element value="Author"/>
+   <element value="Topic" />
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">blog-view</property>

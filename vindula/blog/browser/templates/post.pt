@@ -9,24 +9,20 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <metal:js fill-slot="javascript_head_slot">
-        	<script type="text/javascript" src="http://arquivo.intranet.caixa/js970/vindula_blog.js"></script>
             <script type="text/javascript" src="http://arquivo.intranet.caixa/js970/menu_blog.js"></script>
 			<script type="text/javascript" src="http://arquivo.intranet.caixa/js970/fancybox_comments.js"></script>
 			<script type="text/javascript" src="http://arquivo.intranet.caixa/js/jquery.fancybox-1.3.4.pack.js"></script>
+
         </metal:js>
 		
 		<metal:styleslot fill-slot="style_slot">
     		<link rel="stylesheet" href="http://arquivo.intranet.caixa/css/fancybox-caixa.css" type="text/css">
-		</metal:styleslot>		
+    		<link rel="stylesheet" href="http://arquivo.intranet.caixa/css/fancybox-laranja-caixa.css" type="text/css">
+    		<link rel="stylesheet" href="http://arquivo.intranet.caixa/css/comentario.css" type="text/css">
+		</metal:styleslot>	
 	</head>
 	
 	<body>
-//         <script type="text/javascript">
-//             $("#fancy-comment").fancybox({'autoDimensions' : false,
-//                                     'width': 450,
-//                                     'height': 500,
-//                                  });
-//         </script>
 		<metal:main fill-slot="main">
 	 		<div class="blog" tal:define="post view/getPost">
 				
