@@ -1,6 +1,13 @@
 Histórico do produto vindula.blog
 --------------------------------------
 
+1.1.1			      2012-04-04
+-----------------------------------------
+ - Merge de funcionalidades;
+ - Evolução do mecanismo de vídeo;
+ - Evouções dos portlets;
+ - Criação do portlet de RSS.
+
 1.0.0                         2012-03-13
 -----------------------------------------
  - Versão Inicial;
